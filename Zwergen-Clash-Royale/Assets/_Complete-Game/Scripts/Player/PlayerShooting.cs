@@ -7,7 +7,14 @@ namespace CompleteProject
     {
         public int damagePerShot = 20;                  // The damage inflicted by each bullet.
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
+        public float timeBetweenGrenades = 2f;
         public float range = 100f;                      // The distance the gun can fire.
+
+        public Rigidbody grenade;
+        public Transform throwTransform;
+        public float minThrowForce = 1f;
+        public float maxThrowForce = 3f;
+        public float maxChargeTime = 1f;
 
 
         float timer;                                    // A timer to determine when to fire.
@@ -20,6 +27,16 @@ namespace CompleteProject
         Light gunLight;                                 // Reference to the light component.
 		public Light faceLight;								// Duh
         float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
+
+        private string throwButton;
+        private float currentThrowForce;
+        private float throwSpeed;
+        private bool thrown;
+
+        private void OnEnable()
+        {
+            currentThrowForce = minThrowForce;
+        }
 
 
         void Awake ()
@@ -35,6 +52,12 @@ namespace CompleteProject
 			//faceLight = GetComponentInChildren<Light> ();
         }
 
+        private void Start()
+        {
+            throwButton = "Fire2";
+            throwSpeed = (maxThrowForce - minThrowForce) / maxChargeTime;
+        }
+
 
         void Update ()
         {
@@ -48,6 +71,28 @@ namespace CompleteProject
                 // ... shoot the gun.
                 Shoot ();
             }
+
+            if(Input.GetButton("Fire2") && timer >= timeBetweenGrenades && !thrown )
+            {
+                currentThrowForce = maxThrowForce;
+                ThrowGrenade ();
+            }
+            else if (Input.GetButtonDown(throwButton))
+            {
+                thrown = false;
+                currentThrowForce = minThrowForce;
+                //AUDIO
+            }
+            else if(Input.GetButtonDown(throwButton) && !thrown)
+            {
+                currentThrowForce += throwSpeed * Time.deltaTime;
+
+            }
+            else if (Input.GetButtonUp (throwButton) && !thrown)
+            {
+                ThrowGrenade();
+            }
+
 #else
             // If there is input on the shoot direction stick and it's time to fire...
             if ((CrossPlatformInputManager.GetAxisRaw("Mouse X") != 0 || CrossPlatformInputManager.GetAxisRaw("Mouse Y") != 0) && timer >= timeBetweenBullets)
@@ -71,6 +116,18 @@ namespace CompleteProject
             gunLine.enabled = false;
 			faceLight.enabled = false;
             gunLight.enabled = false;
+        }
+
+        void ThrowGrenade()
+        {
+            thrown = true;
+            Rigidbody grenadeInstance = Instantiate(grenade, throwTransform.position, throwTransform.rotation) as Rigidbody;
+
+            grenadeInstance.velocity = throwSpeed * throwTransform.forward;
+
+            //AUDIO
+
+            throwSpeed = minThrowForce;
         }
 
 
