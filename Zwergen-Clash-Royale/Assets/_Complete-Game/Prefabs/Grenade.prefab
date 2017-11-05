@@ -141,8 +141,8 @@ MonoBehaviour:
   m_enemyMask:
     serializedVersion: 2
     m_Bits: 512
-  maxDamage: 5000
-  explosionForce: 500
+  maxDamage: 100
+  explosionForce: 1000
   maxLifeTime: 3
   explosionRadius: 5
 --- !u!136 &136392569856078296

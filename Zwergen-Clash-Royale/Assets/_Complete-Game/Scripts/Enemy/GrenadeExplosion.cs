@@ -14,6 +14,7 @@ public class GrenadeExplosion : MonoBehaviour
     public float explosionRadius = 5f;
 
     List<GameObject> targets = new List<GameObject> { };
+    //public EnemyHealth enemyHealth;
 
 
 
@@ -53,7 +54,9 @@ public class GrenadeExplosion : MonoBehaviour
 
                 targets[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
 
-                EnemyHealth targetHealth = targets[i].GetComponent<Rigidbody>().GetComponent<EnemyHealth>();
+                EnemyHealth targetHealth = GameObject.Find(targets[i].name).GetComponent<EnemyHealth>();
+
+                //EnemyHealth targetHealth = targets[i].GetComponent<Rigidbody>().GetComponent<EnemyHealth>();
 
                 if (!targetHealth)
                 {
