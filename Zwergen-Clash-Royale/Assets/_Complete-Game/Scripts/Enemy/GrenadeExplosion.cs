@@ -41,11 +41,14 @@ public class GrenadeExplosion : MonoBehaviour
                 Rigidbody targetRididbody = colliders[i].GetComponent<Rigidbody>();
 
                 if (!targetRididbody)
+                {
+                    Debug.Log("Cant find a Rigidbody");
                     continue;
-
+                }
+                    
                 targetRididbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
 
-                EnemyHealth targetHealth = targetRididbody.GetComponent("EnemyHealth") as EnemyHealth;
+                EnemyHealth targetHealth = targetRididbody.GetComponent<EnemyHealth>();
                 
                 if (!targetHealth)
                 {
