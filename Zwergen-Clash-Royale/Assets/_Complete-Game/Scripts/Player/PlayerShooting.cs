@@ -7,7 +7,7 @@ namespace CompleteProject
     {
         public int damagePerShot = 20;                  // The damage inflicted by each bullet.
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
-        public float timeBetweenGrenades = 5f;
+        public float timeBetweenGrenades = 2f;
         public float range = 100f;                      // The distance the gun can fire.
 
         public Rigidbody grenade;
@@ -18,7 +18,6 @@ namespace CompleteProject
 
 
         float timer;                                    // A timer to determine when to fire.
-        float grenadeTimer;
         Ray shootRay = new Ray();                       // A ray from the gun end forwards.
         RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
         int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
@@ -64,7 +63,6 @@ namespace CompleteProject
         {
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
-            grenadeTimer += Time.deltaTime;
 
 #if !MOBILE_INPUT
             // If the Fire1 button is being press and it's time to fire...
@@ -74,7 +72,7 @@ namespace CompleteProject
                 Shoot ();
             }
 
-            if(Input.GetButton("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown )
+            if(Input.GetButton("Fire2") && timer >= timeBetweenGrenades && !thrown )
             {
                 currentThrowForce = maxThrowForce;
                 ThrowGrenade ();
@@ -127,7 +125,7 @@ namespace CompleteProject
 
             grenadeInstance.velocity = throwSpeed * throwTransform.forward;
 
-            //AUDIO HERE
+            //AUDIO
 
             throwSpeed = minThrowForce;
         }
