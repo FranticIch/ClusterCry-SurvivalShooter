@@ -138,13 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a34b49bbce84e141ad87ed7ce9b9641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_enemyMask:
-    m_Bits: 512
-  maxDamage: 5000
-  explosionForce: 500
-  maxLifeTime: 3
-  explosionRadius: 5
-  targets: []
 --- !u!136 &136392569856078296
 CapsuleCollider:
   m_ObjectHideFlags: 1
