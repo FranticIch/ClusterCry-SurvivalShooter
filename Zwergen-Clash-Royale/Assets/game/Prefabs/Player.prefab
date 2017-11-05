@@ -412,8 +412,9 @@ MonoBehaviour:
   timeBetweenBullets: 1
   timeBetweenGrenades: 2
   range: 100
-  grenade: {fileID: 0}
-  throwTransform: {fileID: 0}
+  grenade: {fileID: 5400000}
+  throwTransform: {fileID: 4398519810625778, guid: dbd47db1a215b764bab1f4591f7d7d6b,
+    type: 2}
   minThrowForce: 1
   maxThrowForce: 3
   maxChargeTime: 1
@@ -3997,6 +3998,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1442711715942270
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4434122926769180}
+  - component: {fileID: 65361274181158542}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4012910392776970
 Transform:
   m_ObjectHideFlags: 1
@@ -4034,9 +4051,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4012910392776970}
+  - {fileID: 4434122926769180}
   m_Father: {fileID: 400006}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!4 &4434122926769180
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442711715942270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.329, y: 1.269, z: 0.624}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4430153050487280}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4761367779509082
 Transform:
   m_ObjectHideFlags: 1
@@ -4129,3 +4160,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1321388552960298}
   m_Mesh: {fileID: 4300000, guid: b4d059bdee3de61448c1c87433e7e7c5, type: 3}
+--- !u!65 &65361274181158542
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442711715942270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
