@@ -5,19 +5,14 @@ using UnityEngine;
 public class GrenadeExplosion : MonoBehaviour
 {
 
-    public LayerMask m_enemyMask;
+    public LayerMask enemyMask;
     //public ParticleSystem explosionParticles;
    // public AudioSource explosionAudio;
     public float maxDamage = 100f;
     public float explosionForce = 1000f;
     public float maxLifeTime = 5f;
     public float explosionRadius = 5f;
-
-    List<GameObject> targets = new List<GameObject> { };
-    //public EnemyHealth enemyHealth;
-
-
-
+    
     // Use this for initialization
     void Start()
     {
@@ -26,7 +21,7 @@ public class GrenadeExplosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, m_enemyMask);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, enemyMask);
         
         Debug.Log("Collider Length: " + colliders.Length);
 
@@ -41,20 +36,49 @@ public class GrenadeExplosion : MonoBehaviour
 
             if(colliders[i].CompareTag("Enemy"))
             {
-                targets.Add(colliders[i].gameObject);
+                Debug.Log("Target Name: " + colliders[i].name);
+
+                Rigidbody targetRididbody = colliders[i].GetComponent<Rigidbody>();
+
+                if (!targetRididbody)
+                    continue;
+
+                targetRididbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
+                EnemyHealth targetHealth = targetRididbody.GetComponent("EnemyHealth") as EnemyHealth;
                 
+                if (!targetHealth)
+                {
+                    Debug.Log("Target Health is null");
+                    continue;
+                }
+
+                Debug.Log("Target Health before: " + targetHealth.currentHealth);
+
+                int damage = CalculateDamage(targetRididbody.position);
+
+                Debug.Log("Calculated Damage: " + damage);
+
+                targetHealth.TakeDamage(damage, targetRididbody.position);
+
+                Debug.Log("Target Health after: " + targetHealth.currentHealth);
+
             }
 
         }
-
+        /*
             for(int i = 0; i< targets.Count; i++)
             {
                 Debug.Log("Target Name: " + targets[i].name);
 
+                Rigidbody targetRididbody = targets[i].GetComponent<Rigidbody>();
 
-                targets[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                if (!targetRididbody)
+                    continue;
 
-                EnemyHealth targetHealth = GameObject.Find(targets[i].name).GetComponent<EnemyHealth>();
+                targetRididbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
+                EnemyHealth targetHealth = targetRididbody.GetComponent<EnemyHealth>();
 
                 //EnemyHealth targetHealth = targets[i].GetComponent<Rigidbody>().GetComponent<EnemyHealth>();
 
@@ -66,17 +90,17 @@ public class GrenadeExplosion : MonoBehaviour
 
                 Debug.Log("Target Health before: " + targetHealth.currentHealth);
 
-                int damage = CalculateDamage(targets[i].GetComponent<Rigidbody>().position);
+                int damage = CalculateDamage(targetRididbody.position);
 
                 Debug.Log("Calculated Damage: " + damage);
 
-                targetHealth.TakeDamage(damage, targets[i].GetComponent<Rigidbody>().position);
+                targetHealth.TakeDamage(damage, targetRididbody.position);
 
                 Debug.Log("Target Health after: " + targetHealth.currentHealth);
             }
             
       
-
+        */
 
 
         /*  // Unparent the particles from the shell.
