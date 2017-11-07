@@ -12,12 +12,11 @@ namespace CompleteProject
 
         public Rigidbody grenade;
         public Transform throwTransform;
-        public float minThrowForce = 1f;
-        public float maxThrowForce = 3f;
-        public float maxChargeTime = 1f;
+        public float throwSpeed = 5f;
 
 
         float timer;                                    // A timer to determine when to fire.
+        float grenadeTimer = 5f;
         Ray shootRay = new Ray();                       // A ray from the gun end forwards.
         RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
         int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
@@ -28,14 +27,14 @@ namespace CompleteProject
 		public Light faceLight;								// Duh
         float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
 
-        private string throwButton;
-        private float currentThrowForce;
-        private float throwSpeed;
+
+
+
         private bool thrown;
 
         private void OnEnable()
         {
-            currentThrowForce = minThrowForce;
+
         }
 
 
@@ -54,8 +53,6 @@ namespace CompleteProject
 
         private void Start()
         {
-            throwButton = "Fire2";
-            throwSpeed = (maxThrowForce - minThrowForce) / maxChargeTime;
         }
 
 
@@ -63,8 +60,13 @@ namespace CompleteProject
         {
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
+            grenadeTimer += Time.deltaTime;
 
-#if !MOBILE_INPUT
+            if(timer>timeBetweenGrenades)
+            {
+                thrown = false;
+            }
+
             // If the Fire1 button is being press and it's time to fire...
 			if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
             {
@@ -72,35 +74,13 @@ namespace CompleteProject
                 Shoot ();
             }
 
-            if(Input.GetButton("Fire2") && timer >= timeBetweenGrenades && !thrown )
+            if(Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown )
             {
-                currentThrowForce = maxThrowForce;
                 ThrowGrenade ();
+                grenadeTimer = 0;
             }
-            else if (Input.GetButtonDown(throwButton))
-            {
-                thrown = false;
-                currentThrowForce = minThrowForce;
-                //AUDIO
-            }
-            else if(Input.GetButtonDown(throwButton) && !thrown)
-            {
-                currentThrowForce += throwSpeed * Time.deltaTime;
+            
 
-            }
-            else if (Input.GetButtonUp (throwButton) && !thrown)
-            {
-                ThrowGrenade();
-            }
-
-#else
-            // If there is input on the shoot direction stick and it's time to fire...
-            if ((CrossPlatformInputManager.GetAxisRaw("Mouse X") != 0 || CrossPlatformInputManager.GetAxisRaw("Mouse Y") != 0) && timer >= timeBetweenBullets)
-            {
-                // ... shoot the gun
-                Shoot();
-            }
-#endif
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
             if(timer >= timeBetweenBullets * effectsDisplayTime)
             {
@@ -124,10 +104,11 @@ namespace CompleteProject
             Rigidbody grenadeInstance = Instantiate(grenade, throwTransform.position, throwTransform.rotation) as Rigidbody;
 
             grenadeInstance.velocity = throwSpeed * throwTransform.forward;
+            
 
             //AUDIO
+        
 
-            throwSpeed = minThrowForce;
         }
 
 
