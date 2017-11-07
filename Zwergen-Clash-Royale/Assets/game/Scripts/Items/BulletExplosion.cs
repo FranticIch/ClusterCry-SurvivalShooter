@@ -6,8 +6,10 @@ using CompleteProject;
 public class BulletExplosion : MonoBehaviour {
 
     public int damage = 50;
+    public float explosionForce = 100f;
     
     private float maxLifeTime = 3f;
+    private float explosionRadius = 0.5f;
     ParticleSystem hitParticles;
 
     void Start () {
@@ -25,6 +27,10 @@ public class BulletExplosion : MonoBehaviour {
     {
         if(other.gameObject.CompareTag("Enemy"))
         {
+            Rigidbody targetRigidbody = other.GetComponent<Rigidbody>();
+
+            targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
             EnemyHealth targetHealth = other.GetComponent<EnemyHealth>();
             targetHealth.TakeDamage(damage, transform.position);
         }
