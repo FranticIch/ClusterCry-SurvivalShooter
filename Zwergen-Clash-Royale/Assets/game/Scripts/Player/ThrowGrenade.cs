@@ -12,9 +12,7 @@ public class ThrowGrenade : MonoBehaviour {
     public float explosionForce = 1000f;
     public float maxLifeTime = 3f;
     public float explosionRadius = 2f;
-
-    GameObject player;
-    PlayerShooting ps;
+    
     ParticleSystem explosionParticles;
 
     // Use this for initialization
