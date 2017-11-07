@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  explosionForce: 350
 --- !u!135 &135079611414400492
 SphereCollider:
   m_ObjectHideFlags: 1
