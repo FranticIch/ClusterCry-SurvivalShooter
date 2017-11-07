@@ -5,18 +5,35 @@ using CompleteProject;
 
 public class BulletExplosion : MonoBehaviour {
 
-    public float damage = 20f;
+    public int damage = 50;
     
     private float maxLifeTime = 3f;
     ParticleSystem hitParticles;
-    // Use this for initialization
+
     void Start () {
-        hitParticles = getComponentInChildren<ParticleSystem>; 
+        hitParticles = GetComponentInChildren<ParticleSystem>(); 
         Destroy(gameObject, maxLifeTime);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+        hitParticles.transform.parent = null;
+        hitParticles.Play();
+
+        ParticleSystem.MainModule mainModule = hitParticles.main;
+        Destroy(hitParticles.gameObject, mainModule.duration);
+    }
+
+    private void Awake()
+    {
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            EnemyHealth targetHealth = other.GetComponent<EnemyHealth>();
+            targetHealth.TakeDamage(damage, transform.position);
+        }
+
+        Destroy(gameObject);
+    }
 }
