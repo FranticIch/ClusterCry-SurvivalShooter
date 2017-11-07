@@ -5,56 +5,31 @@ namespace CompleteProject
 {
     public class PlayerShooting : MonoBehaviour
     {
-        public int damagePerShot = 20;                  // The damage inflicted by each bullet.
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
         public float timeBetweenGrenades = 2f;
-        public float range = 100f;                      // The distance the gun can fire.
-
-        public Rigidbody grenade;
-        public Transform throwTransform;
         public float throwSpeed = 5f;
 
+        public Rigidbody grenade;
         public Rigidbody bullet;
         public Transform gunBarrelEnd;
-
-
+        public Transform throwTransform;                    
+        public Light faceLight;
 
         float timer;                                    // A timer to determine when to fire.
         float grenadeTimer = 5f;
-        Ray shootRay = new Ray();                       // A ray from the gun end forwards.
-        RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
-        int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
-        ParticleSystem gunParticles;                    // Reference to the particle system.
-        LineRenderer gunLine;                           // Reference to the line renderer.
-        AudioSource gunAudio;                           // Reference to the audio source.
-        Light gunLight;                                 // Reference to the light component.
-		public Light faceLight;								// Duh
-        float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
+        float effectsDisplayTime = 0.2f;
+        bool thrown;
 
-        private bool thrown;
-
-        private void OnEnable()
-        {
-
-        }
-
+        ParticleSystem gunParticles;                    
+        AudioSource gunAudio;                       
+        Light gunLight;	
 
         void Awake ()
         {
-            // Create a layer mask for the Shootable layer.
-            shootableMask = LayerMask.GetMask ("Shootable");
 
-            // Set up the references.
             gunParticles = GetComponent<ParticleSystem> ();
-            gunLine = GetComponent <LineRenderer> ();
             gunAudio = GetComponent<AudioSource> ();
-			//faceLight = GetComponentInChildren<Light> ();
         }
-
-        private void Start()
-        {
-        }
-
 
         void Update ()
         {
@@ -71,7 +46,6 @@ namespace CompleteProject
 			if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
             {
                 // ... shoot the gun.
-                //Shoot ();
                 ShootBullet();
             }
 
@@ -93,8 +67,6 @@ namespace CompleteProject
 
         public void DisableEffects ()
         {
-            // Disable the line renderer and the light.
-            gunLine.enabled = false;
 			faceLight.enabled = false;
         }
 

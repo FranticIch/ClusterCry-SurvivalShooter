@@ -29,9 +29,6 @@ public class ThrowGrenade : MonoBehaviour {
         for (int i = 0; i < colliders.Length; i++)
         {
            
-
-            Debug.Log(colliders[i].tag);
-
             if (colliders[i].CompareTag("Enemy"))
             {
 
@@ -54,8 +51,7 @@ public class ThrowGrenade : MonoBehaviour {
                 int damage = CalculateDamage(targetRididbody.position);
                 
                 targetHealth.TakeDamage(damage, targetRididbody.position);
-
-                Debug.Log("Target Health after: " + targetHealth.currentHealth);
+               
 
             }
 
@@ -67,11 +63,10 @@ public class ThrowGrenade : MonoBehaviour {
 
         // Play the particle system.
         explosionParticles.Play();
+        
+        //AUDIO HERE
 
-      /*  // Play the explosion sound effect.
-        m_ExplosionAudio.Play(); */
-
-          // Once the particles have finished, destroy the gameobject they are on.
+        // Once the particles have finished, destroy the gameobject they are on.
         ParticleSystem.MainModule mainModule = explosionParticles.main;
         Destroy(explosionParticles.gameObject, mainModule.duration);
 

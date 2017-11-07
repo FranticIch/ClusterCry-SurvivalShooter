@@ -21,11 +21,6 @@ public class BulletExplosion : MonoBehaviour {
         Destroy(hitParticles.gameObject, mainModule.duration);
     }
 
-    private void Awake()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Enemy"))
