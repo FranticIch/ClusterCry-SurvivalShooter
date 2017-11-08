@@ -14,21 +14,25 @@ namespace CompleteProject
         public Transform gunBarrelEnd;
         public Transform throwTransform;                    
         public Light faceLight;
+        public Transform closeCombatDetector;
 
         float timer;                                    // A timer to determine when to fire.
         float grenadeTimer = 5f;
         float effectsDisplayTime = 0.2f;
         bool thrown;
 
-        ParticleSystem gunParticles;                    
-        AudioSource gunAudio;                       
-        Light gunLight;	
+        ParticleSystem gunParticles;
+        CloseCombat closeCombatScript;
+        
+        //AudioSource gunAudio;
 
         void Awake ()
         {
 
             gunParticles = GetComponent<ParticleSystem> ();
-            gunAudio = GetComponent<AudioSource> ();
+            closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
+
+           // gunAudio = GetComponent<AudioSource> ();
         }
 
         void Update ()
@@ -53,6 +57,11 @@ namespace CompleteProject
             {
                 ThrowGrenade ();
                 grenadeTimer = 0;
+            }
+
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                closeCombatScript.attack();
             }
             
 
