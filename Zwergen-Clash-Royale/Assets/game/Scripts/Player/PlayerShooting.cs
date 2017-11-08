@@ -24,7 +24,7 @@ namespace CompleteProject
         ParticleSystem gunParticles;
         CloseCombat closeCombatScript;
         
-        //AudioSource gunAudio;
+        AudioSource gunAudio;
 
         void Awake ()
         {
@@ -32,7 +32,7 @@ namespace CompleteProject
             gunParticles = GetComponent<ParticleSystem> ();
             closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
 
-           // gunAudio = GetComponent<AudioSource> ();
+           gunAudio = GetComponent<AudioSource> ();
         }
 
         void Update ()
@@ -51,6 +51,7 @@ namespace CompleteProject
             {
                 // ... shoot the gun.
                 ShootBullet();
+                gunAudio.Play();
             }
 
             if(Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown )
