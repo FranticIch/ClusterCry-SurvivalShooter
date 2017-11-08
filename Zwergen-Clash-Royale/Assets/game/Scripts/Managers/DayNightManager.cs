@@ -7,13 +7,20 @@ public class DayNightManager : MonoBehaviour {
     public GameObject lightObject;
     private Light light;
     private float elapsed;
-    private float timeForEffect = 300.0f;
+
+    //Anpasspar
+    private float timeForEffect;
+
+    public float selectedTimeForEffect;
+    public float maxLightIntensity;
+    public float minLightIntensity;
 
     // Use this for initialization
     void Start () {
+        timeForEffect = selectedTimeForEffect;
         elapsed = 0.0f;
         light = lightObject.GetComponent<Light>();
-        light.intensity = 1.2f;
+        light.intensity = maxLightIntensity;
     }
 	
 	// Update is called once per frame
@@ -22,18 +29,18 @@ public class DayNightManager : MonoBehaviour {
         {
             if (night)
             {
-                light.intensity = Mathf.Lerp(0.1f, 1.2f, elapsed / timeForEffect);
+                light.intensity = Mathf.Lerp(minLightIntensity, maxLightIntensity, elapsed / timeForEffect);
             }
             else
             {
-                light.intensity = Mathf.Lerp(1.2f, 0.1f, elapsed / timeForEffect);
+                light.intensity = Mathf.Lerp(maxLightIntensity, minLightIntensity, elapsed / timeForEffect);
             }
 
             elapsed += Time.deltaTime;
         }
         else
         {
-            timeForEffect = 300.0f;
+            timeForEffect = selectedTimeForEffect;
             if (night)
             {
                 night = false;

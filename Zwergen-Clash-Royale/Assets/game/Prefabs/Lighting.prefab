@@ -208,6 +208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   night: 0
   lightObject: {fileID: 1460636351738414}
+  maxLightIntensity: 1.2
+  minLightIntensity: 0.1
 --- !u!215 &215974973417974722
 ReflectionProbe:
   m_ObjectHideFlags: 1
