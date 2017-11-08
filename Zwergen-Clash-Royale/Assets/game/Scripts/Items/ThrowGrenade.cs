@@ -24,54 +24,59 @@ public class ThrowGrenade : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, enemyMask);
-
-        for (int i = 0; i < colliders.Length; i++)
+        if (!other.gameObject.CompareTag("CombatDectector"))
         {
-           
-            if (colliders[i].CompareTag("Enemy"))
+
+            Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, enemyMask);
+
+            for (int i = 0; i < colliders.Length; i++)
             {
-
-                Rigidbody targetRididbody = colliders[i].GetComponent<Rigidbody>();
-
-                if (!targetRididbody)
+           
+                if (colliders[i].CompareTag("Enemy"))
                 {
-                    continue;
-                }
 
-                targetRididbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                    Rigidbody targetRididbody = colliders[i].GetComponent<Rigidbody>();
 
-                EnemyHealth targetHealth = targetRididbody.GetComponent<EnemyHealth>();
+                    if (!targetRididbody)
+                    {
+                        continue;
+                    }
 
-                if (!targetHealth)
-                {
-                    continue;
-                }
+                    targetRididbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
+                    EnemyHealth targetHealth = targetRididbody.GetComponent<EnemyHealth>();
+
+                    if (!targetHealth)
+                    {
+                        continue;
+                    }
                 
-                int damage = CalculateDamage(targetRididbody.position);
+                    int damage = CalculateDamage(targetRididbody.position);
                 
-                targetHealth.TakeDamage(damage, targetRididbody.position);
+                    targetHealth.TakeDamage(damage, targetRididbody.position);
                
+
+                }
 
             }
 
-        }
 
+            // Unparent the particles from the shell.
+            explosionParticles.transform.parent = null;
 
-        // Unparent the particles from the shell.
-        explosionParticles.transform.parent = null;
-
-        // Play the particle system.
-        explosionParticles.Play();
+            // Play the particle system.
+            explosionParticles.Play();
         
-        //AUDIO HERE
+            //AUDIO HERE
 
-        // Once the particles have finished, destroy the gameobject they are on.
-        ParticleSystem.MainModule mainModule = explosionParticles.main;
-        Destroy(explosionParticles.gameObject, mainModule.duration);
+            // Once the particles have finished, destroy the gameobject they are on.
+            ParticleSystem.MainModule mainModule = explosionParticles.main;
+            Destroy(explosionParticles.gameObject, mainModule.duration);
 
-        // Destroy the shell.
-        Destroy(gameObject);
+            // Destroy the shell.
+        
+            Destroy(gameObject);
+        }
     }
 
     private int CalculateDamage(Vector3 targetPosition)

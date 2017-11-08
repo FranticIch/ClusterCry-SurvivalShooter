@@ -35,6 +35,10 @@ public class BulletExplosion : MonoBehaviour {
             targetHealth.TakeDamage(damage, transform.position);
         }
 
-        Destroy(gameObject);
+        if(!other.gameObject.CompareTag("CombatDectector"))
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

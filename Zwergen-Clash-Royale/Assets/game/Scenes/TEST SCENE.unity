@@ -3010,6 +3010,15 @@ Prefab:
       propertyPath: damageImage
       value: 
       objectReference: {fileID: 1394906873}
+    - target: {fileID: 65671156217825180, guid: 4e5a0d387dc27394b81600988ad0216f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101853078212474, guid: 4e5a0d387dc27394b81600988ad0216f, type: 2}
+      propertyPath: m_TagString
+      value: CombatDectector
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e5a0d387dc27394b81600988ad0216f, type: 2}
   m_IsPrefabParent: 0
