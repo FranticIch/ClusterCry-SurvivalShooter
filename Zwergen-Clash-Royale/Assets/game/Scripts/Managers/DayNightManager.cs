@@ -5,8 +5,11 @@ using UnityEngine;
 public class DayNightManager : MonoBehaviour {
     public bool night;
     public GameObject lightObject;
+    public GameObject parentObject;
+
     private Light light;
     private float elapsed;
+
 
     //Anpasspar
     private float timeForEffect;
@@ -25,16 +28,15 @@ public class DayNightManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(timeForEffect > elapsed)
+        parentObject.transform.Rotate(Vector3.up * Time.deltaTime, Space.World);
+        if (timeForEffect > elapsed)
         {
             if (night)
             {
-                Debug.Log("NAcht");
                 light.intensity = Mathf.Lerp(minLightIntensity, maxLightIntensity, elapsed / timeForEffect);
             }
             else
             {
-                Debug.Log("Tag");
                 light.intensity = Mathf.Lerp(maxLightIntensity, minLightIntensity, elapsed / timeForEffect);
             }
 
@@ -57,5 +59,4 @@ public class DayNightManager : MonoBehaviour {
             elapsed = 0.0f;
         }
 	}
-
 }
