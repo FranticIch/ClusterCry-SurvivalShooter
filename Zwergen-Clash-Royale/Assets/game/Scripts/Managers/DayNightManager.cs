@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DayNightManager : MonoBehaviour {
-    public bool night = false;
+    public bool night;
     public GameObject lightObject;
     private Light light;
     private float elapsed;
@@ -29,10 +29,12 @@ public class DayNightManager : MonoBehaviour {
         {
             if (night)
             {
+                Debug.Log("NAcht");
                 light.intensity = Mathf.Lerp(minLightIntensity, maxLightIntensity, elapsed / timeForEffect);
             }
             else
             {
+                Debug.Log("Tag");
                 light.intensity = Mathf.Lerp(maxLightIntensity, minLightIntensity, elapsed / timeForEffect);
             }
 
@@ -40,15 +42,19 @@ public class DayNightManager : MonoBehaviour {
         }
         else
         {
-            timeForEffect = selectedTimeForEffect;
+           
             if (night)
             {
                 night = false;
+
             }
             else
             {
                 night = true;
             }
+
+            timeForEffect = selectedTimeForEffect;
+            elapsed = 0.0f;
         }
 	}
 
