@@ -9,6 +9,8 @@ namespace CompleteProject
         public float timeBetweenGrenades = 2f;
         public float throwSpeed = 5f;
 
+        public float weaponSlowdown = 1.0f;
+
         public Rigidbody grenade;
         public Rigidbody bullet;
         public Transform gunBarrelEnd;
@@ -19,8 +21,11 @@ namespace CompleteProject
         float timer;                                    // A timer to determine when to fire.
         float grenadeTimer = 5f;
         float effectsDisplayTime = 0.2f;
+        float waitForMovement;
         bool thrown;
 
+
+        PlayerMovement playerMovement;
         ParticleSystem gunParticles;
         CloseCombat closeCombatScript;
         
@@ -28,9 +33,9 @@ namespace CompleteProject
 
         void Awake ()
         {
-
             gunParticles = GetComponent<ParticleSystem> ();
             closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
+            playerMovement = GetComponentInParent<PlayerMovement>();
 
            gunAudio = GetComponent<AudioSource> ();
         }
@@ -50,18 +55,21 @@ namespace CompleteProject
 			if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
             {
                 // ... shoot the gun.
+                playerMovement.SlowDownModificator = 0.0f;
                 ShootBullet();
                 gunAudio.Play();
             }
 
             if(Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown )
             {
+                playerMovement.SlowDownModificator = 0.5f;
                 ThrowGrenade ();
                 grenadeTimer = 0;
             }
 
             if(Input.GetKeyDown(KeyCode.F))
             {
+                playerMovement.SlowDownModificator = 0.75f;
                 closeCombatScript.attack();
             }
             
@@ -72,6 +80,18 @@ namespace CompleteProject
                 // ... disable the effects.
                 DisableEffects ();
             }
+
+
+            if(playerMovement.SlowDownModificator < 1.0f)
+            {
+                waitForMovement += Time.deltaTime;      
+            }
+            if(waitForMovement > 1.0f)
+            {
+                waitForMovement = 0.0f;
+                playerMovement.SlowDownModificator = 1.0f;
+            }
+            
         }
 
 
