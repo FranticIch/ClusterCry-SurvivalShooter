@@ -24,6 +24,9 @@ namespace CompleteProject
         float waitForMovement;
         bool thrown;
 
+        float countdownTimerMainWeapon;
+        float countdownTimerSpecialWeapon;
+
 
         PlayerMovement playerMovement;
         ParticleSystem gunParticles;
@@ -122,6 +125,43 @@ namespace CompleteProject
             Rigidbody bulletInstance = Instantiate(bullet, gunBarrelEnd.position, gunBarrelEnd.rotation) as Rigidbody;
 
             bulletInstance.velocity = 20f * gunBarrelEnd.forward;
+        }
+
+        public string MainWeaponTimer
+        { 
+            get
+            {
+
+                if (timer >= 0.0f && timer < timeBetweenBullets)
+                {
+                    countdownTimerMainWeapon -= Time.deltaTime;
+                    return ""+(int) countdownTimerMainWeapon;
+                }
+                else
+                {
+                    countdownTimerMainWeapon = (int)timeBetweenBullets;
+                    return "Bereit" ; 
+                }
+               
+            }
+        }
+
+        public string SpecialWeaponTimer
+        {
+            get
+            {
+               
+                if (grenadeTimer >= 0 && grenadeTimer < timeBetweenGrenades)
+                {
+                    countdownTimerSpecialWeapon -= Time.deltaTime;
+                    return "" + (int)countdownTimerSpecialWeapon;
+                }
+                else
+                {
+                    countdownTimerSpecialWeapon = (int)timeBetweenGrenades;
+                    return "Bereit";
+                }
+            }
         }
     }
 }

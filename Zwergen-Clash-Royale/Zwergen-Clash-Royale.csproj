@@ -137,6 +137,7 @@
     <Compile Include="Assets\game\Scripts\Managers\GameOverManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\PauseManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\ScoreManager.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\SkillUIManager.cs" />
     <Compile Include="Assets\game\Scripts\Player\CloseCombat.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerMovement.cs" />
