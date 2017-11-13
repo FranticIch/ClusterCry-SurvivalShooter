@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DayNightManager : MonoBehaviour {
-    public bool night;
+    public bool Night;
+    private bool night;
     public GameObject lightObject;
     public GameObject parentObject;
 
@@ -20,6 +21,7 @@ public class DayNightManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Night = false;
         timeForEffect = selectedTimeForEffect;
         elapsed = 0.0f;
         light = lightObject.GetComponent<Light>();
@@ -58,5 +60,15 @@ public class DayNightManager : MonoBehaviour {
             timeForEffect = selectedTimeForEffect;
             elapsed = 0.0f;
         }
+
+        if(light.intensity > 0.6f)
+        {
+            Night = false;
+        }
+        else
+        {
+            Night = true;
+        }
+
 	}
 }

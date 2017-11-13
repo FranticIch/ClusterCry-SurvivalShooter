@@ -169,7 +169,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.9460446, b: 0.7205882, a: 1}
-  m_Intensity: 0.27170587
+  m_Intensity: 1.1375084
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -191,20 +191,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -220,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97adc1583c2936d4da293fe25d241459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  night: 0
+  Night: 0
   lightObject: {fileID: 1460636351738414}
   parentObject: {fileID: 1695727883849952}
   selectedTimeForEffect: 360
