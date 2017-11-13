@@ -127,6 +127,7 @@
     <Compile Include="Assets\game\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\game\Scripts\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\game\Scripts\Enemy\EnemyMovement.cs" />
+    <Compile Include="Assets\game\Scripts\Enemy\goblinLaugh.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\RandomAnimationPoint.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\RandomParticlePoint.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\VolumeHandler.cs" />
