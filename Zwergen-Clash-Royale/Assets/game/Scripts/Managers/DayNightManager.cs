@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DayNightManager : MonoBehaviour {
-    public bool night;
+public class DayNightManager : MonoBehaviour
+{
+    public bool Night;
+    private bool night;
     public GameObject lightObject;
     public GameObject parentObject;
 
@@ -19,15 +21,18 @@ public class DayNightManager : MonoBehaviour {
     public float minLightIntensity;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        Night = false;
         timeForEffect = selectedTimeForEffect;
         elapsed = 0.0f;
         light = lightObject.GetComponent<Light>();
         light.intensity = maxLightIntensity;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         parentObject.transform.Rotate(Vector3.up * Time.deltaTime, Space.World);
         if (timeForEffect > elapsed)
         {
@@ -44,7 +49,7 @@ public class DayNightManager : MonoBehaviour {
         }
         else
         {
-           
+
             if (night)
             {
                 night = false;
@@ -58,5 +63,15 @@ public class DayNightManager : MonoBehaviour {
             timeForEffect = selectedTimeForEffect;
             elapsed = 0.0f;
         }
-	}
+
+        if (light.intensity > 0.6f)
+        {
+            Night = false;
+        }
+        else
+        {
+            Night = true;
+        }
+
+    }
 }
