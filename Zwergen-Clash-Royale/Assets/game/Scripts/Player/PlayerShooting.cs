@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
 namespace CompleteProject
@@ -31,16 +32,18 @@ namespace CompleteProject
         PlayerMovement playerMovement;
         ParticleSystem gunParticles;
         CloseCombat closeCombatScript;
-        
-        AudioSource gunAudio;
 
+        AudioSource gunAudio;
+        public AudioSource punchAudio;
+        
         void Awake ()
         {
             gunParticles = GetComponent<ParticleSystem> ();
             closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
             playerMovement = GetComponentInParent<PlayerMovement>();
 
-           gunAudio = GetComponent<AudioSource> ();
+            gunAudio = GetComponent<AudioSource>();
+            
         }
 
         void Update ()
@@ -72,8 +75,10 @@ namespace CompleteProject
 
             if(Input.GetKeyDown(KeyCode.F))
             {
+                
                 playerMovement.SlowDownModificator = 0.75f;
                 closeCombatScript.attack();
+                punchAudio.Play();
             }
             
 
