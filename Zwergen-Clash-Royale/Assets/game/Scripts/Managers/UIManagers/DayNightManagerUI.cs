@@ -7,21 +7,29 @@ public class DayNightManagerUI : MonoBehaviour {
 
     private Image _daynightuiImage;
     private DayNightManager _daynightmanager;
+    private Text clock;
+    public Sprite[] sprites;
 	// Use this for initialization
 	void Start () {
         _daynightuiImage = gameObject.GetComponent<Image>();
         _daynightmanager = FindObjectOfType<DayNightManager>();
-	}
+        clock = gameObject.GetComponentInChildren<Text>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (_daynightmanager.Night)
+        clock.text = (int)(_daynightmanager.GetTime*10)+ ":00";
+        if (_daynightmanager.GetTime > 0.4f && _daynightmanager.GetTime < 0.8f)
         {
-            _daynightuiImage.color = Color.black;
+            _daynightuiImage.sprite =  sprites[1];
+        }
+        else if(_daynightmanager.GetTime < 0.4f)
+        {
+            _daynightuiImage.sprite = sprites[0];
         }
         else
         {
-            _daynightuiImage.color = Color.yellow;
+            _daynightuiImage.sprite = sprites[2];
         }
 		
 	}

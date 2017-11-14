@@ -12,6 +12,8 @@ public class DayNightManager : MonoBehaviour
     private Light light;
     private float elapsed;
 
+    private float time;
+
 
     //Anpasspar
     private float timeForEffect;
@@ -73,5 +75,15 @@ public class DayNightManager : MonoBehaviour
             Night = true;
         }
 
+       time = (float) light.intensity;
+
+    }
+
+    public float GetTime
+    {
+        get
+        {
+            return time;
+        }
     }
 }
