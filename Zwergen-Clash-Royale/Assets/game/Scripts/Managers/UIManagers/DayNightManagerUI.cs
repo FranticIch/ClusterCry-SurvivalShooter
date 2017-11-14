@@ -18,7 +18,7 @@ public class DayNightManagerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        clock.text = (int)(_daynightmanager.GetTime*10)+ ":00";
+       
         if (_daynightmanager.GetTime > 0.4f && _daynightmanager.GetTime < 0.8f)
         {
             _daynightuiImage.sprite =  sprites[1];
@@ -30,6 +30,15 @@ public class DayNightManagerUI : MonoBehaviour {
         else
         {
             _daynightuiImage.sprite = sprites[2];
+        }
+
+        if (_daynightmanager.night)
+        {
+            clock.text = (int)(_daynightmanager.GetTime * 10) + ":00";
+        }
+        else
+        {
+            clock.text = (int)(24 - _daynightmanager.GetTime * 10) + ":00";
         }
 		
 	}

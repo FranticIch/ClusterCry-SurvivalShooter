@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DayNightManager : MonoBehaviour
 {
-    public bool Night;
-    private bool night;
+    public bool night;
     public GameObject lightObject;
     public GameObject parentObject;
 
@@ -25,7 +24,6 @@ public class DayNightManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Night = false;
         timeForEffect = selectedTimeForEffect;
         elapsed = 0.0f;
         light = lightObject.GetComponent<Light>();
@@ -66,14 +64,6 @@ public class DayNightManager : MonoBehaviour
             elapsed = 0.0f;
         }
 
-        if (light.intensity > 0.6f)
-        {
-            Night = false;
-        }
-        else
-        {
-            Night = true;
-        }
 
        time = (float) light.intensity;
 
