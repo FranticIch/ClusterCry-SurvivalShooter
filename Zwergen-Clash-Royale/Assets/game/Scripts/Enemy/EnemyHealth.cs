@@ -12,7 +12,7 @@ namespace CompleteProject
         public bool isDead;                         // Whether the enemy is dead.
 
 
-        Animator anim;                              // Reference to the animator.
+        //Animator anim;                              // Reference to the animator.
         AudioSource enemyAudio;                     // Reference to the audio source.
         ParticleSystem hitParticles;                // Reference to the particle system that plays when the enemy is damaged.
         CapsuleCollider capsuleCollider;            // Reference to the capsule collider.
@@ -22,7 +22,7 @@ namespace CompleteProject
         void Awake ()
         {
             // Setting up the references.
-            anim = GetComponent <Animator> ();
+           // anim = GetComponent <Animator> ();
             enemyAudio = GetComponent <AudioSource> ();
             hitParticles = GetComponentInChildren <ParticleSystem> ();
             capsuleCollider = GetComponent <CapsuleCollider> ();
@@ -80,11 +80,13 @@ namespace CompleteProject
             capsuleCollider.isTrigger = true;
 
             // Tell the animator that the enemy is dead.
-            anim.SetTrigger ("Dead");
+            //anim.SetTrigger ("Dead");
 
             // Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
             enemyAudio.clip = deathClip;
             enemyAudio.Play ();
+
+            StartSinking();
         }
 
 
