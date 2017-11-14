@@ -7,13 +7,14 @@ public class ThrowGrenade : MonoBehaviour {
 
     public LayerMask enemyMask;
     //public ParticleSystem explosionParticles;
-    // public AudioSource explosionAudio;
+    
     public float maxDamage = 100f;
     public float explosionForce = 1000f;
     public float maxLifeTime = 3f;
     public float explosionRadius = 2f;
     
     ParticleSystem explosionParticles;
+    public AudioSource explosionAudio;
 
     // Use this for initialization
     void Start()
@@ -66,8 +67,15 @@ public class ThrowGrenade : MonoBehaviour {
 
             // Play the particle system.
             explosionParticles.Play();
-        
+
+            //explosionAudio.transform.parent = null;
+            explosionAudio.gameObject.transform.parent = null;
+            explosionAudio.Play();
+            Destroy(explosionAudio.gameObject, explosionAudio.clip.length);
+
+           
             //AUDIO HERE
+
 
             // Once the particles have finished, destroy the gameobject they are on.
             ParticleSystem.MainModule mainModule = explosionParticles.main;
