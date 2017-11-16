@@ -12,17 +12,18 @@ namespace CompleteProject
         public bool isDead;                         // Whether the enemy is dead.
 
 
-        //Animator anim;                              // Reference to the animator.
+        Animator anim;                              // Reference to the animator.
         AudioSource enemyAudio;                     // Reference to the audio source.
         ParticleSystem hitParticles;                // Reference to the particle system that plays when the enemy is damaged.
         CapsuleCollider capsuleCollider;            // Reference to the capsule collider.
         bool isSinking;                             // Whether the enemy has started sinking through the floor.
+        float timerBeforeSinking = 0;
 
 
         void Awake ()
         {
             // Setting up the references.
-           // anim = GetComponent <Animator> ();
+            anim = GetComponent <Animator> ();
             enemyAudio = GetComponent <AudioSource> ();
             hitParticles = GetComponentInChildren <ParticleSystem> ();
             capsuleCollider = GetComponent <CapsuleCollider> ();
@@ -34,11 +35,14 @@ namespace CompleteProject
 
         void Update ()
         {
+
             // If the enemy should be sinking...
             if(isSinking)
             {
-                // ... move the enemy down by the sinkSpeed per second.
-                transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
+                timerBeforeSinking += Time.deltaTime;
+
+                if(timerBeforeSinking>2.5f)
+                   transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
             }
         }
 
@@ -80,7 +84,7 @@ namespace CompleteProject
             capsuleCollider.isTrigger = true;
 
             // Tell the animator that the enemy is dead.
-            //anim.SetTrigger ("Dead");
+            anim.SetTrigger ("Dead");
 
             // Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
             enemyAudio.clip = deathClip;
@@ -105,7 +109,7 @@ namespace CompleteProject
             ScoreManager.score += scoreValue;
 
             // After 2 seconds destory the enemy.
-            Destroy (gameObject, 2f);
+            Destroy (gameObject, 4f);
         }
     }
 }

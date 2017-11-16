@@ -9,7 +9,7 @@ namespace CompleteProject
         public int attackDamage = 10;               // The amount of health taken away per attack.
 
 
-        //Animator anim;                              // Reference to the animator component.
+        Animator anim;                              // Reference to the animator component.
         GameObject player;                          // Reference to the player GameObject.
         PlayerHealth playerHealth;                  // Reference to the player's health.
         EnemyHealth enemyHealth;                    // Reference to this enemy's health.
@@ -23,7 +23,7 @@ namespace CompleteProject
             player = GameObject.FindGameObjectWithTag ("Player");
             playerHealth = player.GetComponent <PlayerHealth> ();
             enemyHealth = GetComponent<EnemyHealth>();
-           // anim = GetComponent <Animator> ();
+            anim = GetComponent <Animator> ();
         }
 
 
@@ -51,21 +51,28 @@ namespace CompleteProject
 
         void Update ()
         {
+            
+        }
+
+        private void FixedUpdate()
+        {
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
 
             // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
-            if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+            if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
             {
                 // ... attack.
-                Attack ();
+                anim.SetTrigger("attack");
+                Attack();
             }
 
+
             // If the player has zero or less health...
-            if(playerHealth.currentHealth <= 0)
+            if (playerHealth.currentHealth <= 0)
             {
                 // ... tell the animator the player is dead.
-                //anim.SetTrigger ("PlayerDead");
+                anim.SetTrigger("PlayerDead");
             }
         }
 
@@ -80,6 +87,8 @@ namespace CompleteProject
             {
                 // ... damage the player.
                 playerHealth.TakeDamage (attackDamage, transform.position);
+
+                anim.SetTrigger("attacked");
             }
         }
     }
