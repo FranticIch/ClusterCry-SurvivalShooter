@@ -48,17 +48,18 @@ namespace CompleteProject
 
         void Update ()
         {
+
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
             grenadeTimer += Time.deltaTime;
 
-            if(timer>timeBetweenGrenades)
+            if (timer > timeBetweenGrenades)
             {
                 thrown = false;
             }
 
             // If the Fire1 button is being press and it's time to fire...
-			if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
             {
                 // ... shoot the gun.
                 playerMovement.SlowDownModificator = 0.0f;
@@ -66,39 +67,43 @@ namespace CompleteProject
                 gunAudio.Play();
             }
 
-            if(Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown )
+            if (Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown)
             {
                 playerMovement.SlowDownModificator = 0.5f;
-                ThrowGrenade ();
+                ThrowGrenade();
                 grenadeTimer = 0;
             }
 
-            if(Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                
+
                 playerMovement.SlowDownModificator = 0.75f;
                 closeCombatScript.attack();
                 punchAudio.Play();
             }
-            
+
 
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
-            if(timer >= timeBetweenBullets * effectsDisplayTime)
+            if (timer >= timeBetweenBullets * effectsDisplayTime)
             {
                 // ... disable the effects.
-                DisableEffects ();
+                DisableEffects();
             }
 
 
-            if(playerMovement.SlowDownModificator < 1.0f)
+            if (playerMovement.SlowDownModificator < 1.0f)
             {
-                waitForMovement += Time.deltaTime;      
+                waitForMovement += Time.deltaTime;
             }
-            if(waitForMovement > 1.0f)
+            if (waitForMovement > 1.0f)
             {
                 waitForMovement = 0.0f;
                 playerMovement.SlowDownModificator = 1.0f;
             }
+        }
+
+        private void FixedUpdate()
+        {
             
         }
 

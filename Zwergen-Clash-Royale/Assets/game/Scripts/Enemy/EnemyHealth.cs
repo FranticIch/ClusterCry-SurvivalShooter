@@ -54,6 +54,8 @@ namespace CompleteProject
                 // ... no need to take damage so exit the function.
                 return;
 
+            anim.SetTrigger("getHit");
+
             // Play the hurt sound effect.
             enemyAudio.Play ();
 
