@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public string name;
+	public Biome[] biomes; // MISSING DISTRIBUTION /RARITY
+	// public Dictionary<GameObject, float> biomes = new Dictionary<GameObject, float>();
+	
+	public GameObject GenerateTileAt(int x, int z, int seed){
+		return biomes[Random.Range(0, biomes.Length-1)].GetRandomTile(seed);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

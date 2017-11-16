@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour {
 
-	public GameObject[] tilePrefabs;
+	public Generator generator;
 	
 	private List<GameObject> tiles = new List<GameObject>();
 	
 	private int seed;
 	
 	void Start () {
-		GenerateStartingArea(2);
+		GenerateStartingArea(10);
 	}
 	
 	void Update () {
@@ -27,14 +27,8 @@ public class WorldManager : MonoBehaviour {
 	}
 	
 	void GenerateTileAt(int x, int z) {
-		tiles.Add((GameObject)Instantiate(tilePrefabs[0], new Vector3(x*10, 0, z*10), Quaternion.identity));
+		GameObject tile = (GameObject)Instantiate(generator.GenerateTileAt(x, z, seed), new Vector3(x*10, 0, z*10), Quaternion.identity);
+		tile.transform.parent = transform;
+		tiles.Add(tile);
 	}
-	
-	// -> Instead of generating Tiles - > Generate Chunks? Nah
-	//LoadTileAt(int x, int y) 
-	//CheckIfTilesExist(int x, int y) ( On Harddrive )
-	//GenerateTileAt(int x, int y)
-	//GenerateOrLoadTileAt(int x, int y)
-	
-	//Unloading
 }
