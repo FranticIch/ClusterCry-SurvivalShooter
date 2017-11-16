@@ -29,8 +29,7 @@ namespace CompleteProject
             if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
             {
                 // ... set the destination of the nav mesh agent to the player.
-                //nav.SetDestination (player.position);
-                anim.SetBool("playerIsAlive", false);
+                nav.SetDestination (player.position);
                 
             }
             // Otherwise...
@@ -38,7 +37,6 @@ namespace CompleteProject
             {
                 // ... disable the nav mesh agent.
                 nav.enabled = false;
-                anim.SetBool("playerIsAlive", false);
             }
 
 
