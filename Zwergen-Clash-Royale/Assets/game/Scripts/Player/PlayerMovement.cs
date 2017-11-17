@@ -6,6 +6,7 @@ namespace CompleteProject
     public class PlayerMovement : MonoBehaviour
     {
         public float speed = 6f;            // The speed that the player will move at.
+        private float _slowDownModificator = 1;
 
 
         Vector3 movement;                   // The vector to store the direction of the player's movement.
@@ -52,7 +53,7 @@ namespace CompleteProject
             movement.Set (h, 0f, v);
             
             // Normalise the movement vector and make it proportional to the speed per second.
-            movement = movement.normalized * speed * Time.deltaTime;
+            movement = (movement.normalized * speed * Time.deltaTime)*_slowDownModificator;
 
             // Move the player to it's current position plus the movement.
             playerRigidbody.MovePosition (transform.position + movement);
@@ -112,6 +113,19 @@ namespace CompleteProject
 
             // Tell the animator whether or not the player is walking.
             anim.SetBool ("IsWalking", walking);
+        }
+
+        public float SlowDownModificator
+        {
+            set
+            {
+                _slowDownModificator = value;
+            }
+
+            get
+            {
+                return _slowDownModificator;
+            }
         }
     }
 }

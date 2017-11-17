@@ -15,6 +15,8 @@ namespace CompleteProject
         EnemyHealth enemyHealth;                    // Reference to this enemy's health.
         bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
         float timer;                                // Timer for counting up to the next attack.
+        float attackAnimationTimer;
+        bool attacked = false;
 
 
         void Awake ()
@@ -51,21 +53,50 @@ namespace CompleteProject
 
         void Update ()
         {
+            
+        }
+
+        private void FixedUpdate()
+        {
+            if(attacked)
+            {
+                attackAnimationTimer += Time.deltaTime;
+                if (attackAnimationTimer > 1f)
+                {
+                    attacked = false;
+                    anim.SetBool("attack", attacked);
+                    attackAnimationTimer = 0f;
+                }
+                    
+
+            }
+            
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
 
+
+
             // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
-            if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+            if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
             {
                 // ... attack.
-                Attack ();
+                attacked = true;
+                anim.SetBool("attack", attacked);
+                
+                for(float i=0f; i<0.5; i+=Time.deltaTime)
+                {
+
+                }
+                Attack();
+                
             }
+            
 
             // If the player has zero or less health...
-            if(playerHealth.currentHealth <= 0)
+            if (playerHealth.currentHealth <= 0)
             {
                 // ... tell the animator the player is dead.
-                anim.SetTrigger ("PlayerDead");
+                anim.SetTrigger("PlayerDead");
             }
         }
 
@@ -79,7 +110,9 @@ namespace CompleteProject
             if(playerHealth.currentHealth > 0)
             {
                 // ... damage the player.
-                playerHealth.TakeDamage (attackDamage);
+                playerHealth.TakeDamage (attackDamage, transform.position);
+
+               
             }
         }
     }

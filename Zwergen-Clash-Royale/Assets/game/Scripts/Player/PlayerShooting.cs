@@ -1,121 +1,116 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
 namespace CompleteProject
 {
     public class PlayerShooting : MonoBehaviour
     {
-        public int damagePerShot = 20;                  // The damage inflicted by each bullet.
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
         public float timeBetweenGrenades = 2f;
-        public float range = 100f;                      // The distance the gun can fire.
+        public float throwSpeed = 5f;
+
+        public float weaponSlowdown = 1.0f;
 
         public Rigidbody grenade;
-        public Transform throwTransform;
-        public float minThrowForce = 1f;
-        public float maxThrowForce = 3f;
-        public float maxChargeTime = 1f;
-
+        public Rigidbody bullet;
+        public Transform gunBarrelEnd;
+        public Transform throwTransform;                    
+        public Light faceLight;
+        public Transform closeCombatDetector;
 
         float timer;                                    // A timer to determine when to fire.
-        Ray shootRay = new Ray();                       // A ray from the gun end forwards.
-        RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
-        int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
-        ParticleSystem gunParticles;                    // Reference to the particle system.
-        LineRenderer gunLine;                           // Reference to the line renderer.
-        AudioSource gunAudio;                           // Reference to the audio source.
-        Light gunLight;                                 // Reference to the light component.
-		public Light faceLight;								// Duh
-        float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
+        float grenadeTimer = 5f;
+        float effectsDisplayTime = 0.2f;
+        float waitForMovement;
+        bool thrown;
 
-        private string throwButton;
-        private float currentThrowForce;
-        private float throwSpeed;
-        private bool thrown;
-
-        private void OnEnable()
-        {
-            currentThrowForce = minThrowForce;
-        }
+        float countdownTimerMainWeapon;
+        float countdownTimerSpecialWeapon;
 
 
+        PlayerMovement playerMovement;
+        ParticleSystem gunParticles;
+        CloseCombat closeCombatScript;
+
+        AudioSource gunAudio;
+        public AudioSource punchAudio;
+        
         void Awake ()
         {
-            // Create a layer mask for the Shootable layer.
-            shootableMask = LayerMask.GetMask ("Shootable");
-
-            // Set up the references.
             gunParticles = GetComponent<ParticleSystem> ();
-            gunLine = GetComponent <LineRenderer> ();
-            gunAudio = GetComponent<AudioSource> ();
-            gunLight = GetComponent<Light> ();
-			//faceLight = GetComponentInChildren<Light> ();
-        }
+            closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
+            playerMovement = GetComponentInParent<PlayerMovement>();
 
-        private void Start()
-        {
-            throwButton = "Fire2";
-            throwSpeed = (maxThrowForce - minThrowForce) / maxChargeTime;
+            gunAudio = GetComponent<AudioSource>();
+            
         }
-
 
         void Update ()
         {
+
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
+            grenadeTimer += Time.deltaTime;
 
-#if !MOBILE_INPUT
-            // If the Fire1 button is being press and it's time to fire...
-			if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
-            {
-                // ... shoot the gun.
-                Shoot ();
-            }
-
-            if(Input.GetButton("Fire2") && timer >= timeBetweenGrenades && !thrown )
-            {
-                currentThrowForce = maxThrowForce;
-                ThrowGrenade ();
-            }
-            else if (Input.GetButtonDown(throwButton))
+            if (timer > timeBetweenGrenades)
             {
                 thrown = false;
-                currentThrowForce = minThrowForce;
-                //AUDIO
             }
-            else if(Input.GetButtonDown(throwButton) && !thrown)
-            {
-                currentThrowForce += throwSpeed * Time.deltaTime;
 
-            }
-            else if (Input.GetButtonUp (throwButton) && !thrown)
+            // If the Fire1 button is being press and it's time to fire...
+            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
             {
+                // ... shoot the gun.
+                playerMovement.SlowDownModificator = 0.0f;
+                ShootBullet();
+                gunAudio.Play();
+            }
+
+            if (Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown)
+            {
+                playerMovement.SlowDownModificator = 0.5f;
                 ThrowGrenade();
+                grenadeTimer = 0;
             }
 
-#else
-            // If there is input on the shoot direction stick and it's time to fire...
-            if ((CrossPlatformInputManager.GetAxisRaw("Mouse X") != 0 || CrossPlatformInputManager.GetAxisRaw("Mouse Y") != 0) && timer >= timeBetweenBullets)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                // ... shoot the gun
-                Shoot();
+
+                playerMovement.SlowDownModificator = 0.75f;
+                closeCombatScript.attack();
+                punchAudio.Play();
             }
-#endif
+
+
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
-            if(timer >= timeBetweenBullets * effectsDisplayTime)
+            if (timer >= timeBetweenBullets * effectsDisplayTime)
             {
                 // ... disable the effects.
-                DisableEffects ();
+                DisableEffects();
             }
+
+
+            if (playerMovement.SlowDownModificator < 1.0f)
+            {
+                waitForMovement += Time.deltaTime;
+            }
+            if (waitForMovement > 1.0f)
+            {
+                waitForMovement = 0.0f;
+                playerMovement.SlowDownModificator = 1.0f;
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            
         }
 
 
         public void DisableEffects ()
         {
-            // Disable the line renderer and the light.
-            gunLine.enabled = false;
 			faceLight.enabled = false;
-            gunLight.enabled = false;
         }
 
         void ThrowGrenade()
@@ -124,58 +119,58 @@ namespace CompleteProject
             Rigidbody grenadeInstance = Instantiate(grenade, throwTransform.position, throwTransform.rotation) as Rigidbody;
 
             grenadeInstance.velocity = throwSpeed * throwTransform.forward;
+            
 
             //AUDIO
-
-            throwSpeed = minThrowForce;
+        
         }
 
-
-        void Shoot ()
+        void ShootBullet()
         {
-            // Reset the timer.
             timer = 0f;
 
-            // Play the gun shot audioclip.
-            gunAudio.Play ();
+            gunParticles.Stop();
+            gunParticles.Play();
 
-            // Enable the lights.
-            gunLight.enabled = true;
-			faceLight.enabled = true;
+            Rigidbody bulletInstance = Instantiate(bullet, gunBarrelEnd.position, gunBarrelEnd.rotation) as Rigidbody;
 
-            // Stop the particles from playing if they were, then start the particles.
-            gunParticles.Stop ();
-            gunParticles.Play ();
+            bulletInstance.velocity = 20f * gunBarrelEnd.forward;
+        }
 
-            // Enable the line renderer and set it's first position to be the end of the gun.
-            gunLine.enabled = true;
-            gunLine.SetPosition (0, transform.position);
-
-            // Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
-            shootRay.origin = transform.position;
-            shootRay.direction = transform.forward;
-
-            // Perform the raycast against gameobjects on the shootable layer and if it hits something...
-            if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
+        public string MainWeaponTimer
+        { 
+            get
             {
-                // Try and find an EnemyHealth script on the gameobject hit.
-                EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
 
-                // If the EnemyHealth component exist...
-                if(enemyHealth != null)
+                if (timer >= 0.0f && timer < timeBetweenBullets)
                 {
-                    // ... the enemy should take damage.
-                    enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+                    countdownTimerMainWeapon -= Time.deltaTime;
+                    return ""+(int) countdownTimerMainWeapon;
                 }
-
-                // Set the second position of the line renderer to the point the raycast hit.
-                gunLine.SetPosition (1, shootHit.point);
+                else
+                {
+                    countdownTimerMainWeapon = (int)timeBetweenBullets;
+                    return "Bereit" ; 
+                }
+               
             }
-            // If the raycast didn't hit anything on the shootable layer...
-            else
+        }
+
+        public string SpecialWeaponTimer
+        {
+            get
             {
-                // ... set the second position of the line renderer to the fullest extent of the gun's range.
-                gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
+               
+                if (grenadeTimer >= 0 && grenadeTimer < timeBetweenGrenades)
+                {
+                    countdownTimerSpecialWeapon -= Time.deltaTime;
+                    return "" + (int)countdownTimerSpecialWeapon;
+                }
+                else
+                {
+                    countdownTimerSpecialWeapon = (int)timeBetweenGrenades;
+                    return "Bereit";
+                }
             }
         }
     }
