@@ -21,6 +21,6 @@ public class Biome : MonoBehaviour {
 	}
 	
 	public GameObject GetRandomTile(int seed) {
-		return tilePrefabs[Random.Range(0, tilePrefabs.Length-1)];
+		return tilePrefabs[Random.Range(0, tilePrefabs.Length)];
 	}
 }

@@ -11,7 +11,7 @@ public class WorldManager : MonoBehaviour {
 	private int seed;
 	
 	void Start () {
-		GenerateStartingArea(10);
+		GenerateStartingArea(30);
 	}
 	
 	void Update () {

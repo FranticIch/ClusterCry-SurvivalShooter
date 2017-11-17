@@ -280,10 +280,14 @@
     <Compile Include="Assets\game\Scripts\Managers\PauseManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\ScoreManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\SkillUIManager.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\WorldManager.cs" />
     <Compile Include="Assets\game\Scripts\Player\CloseCombat.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerShooting.cs" />
+    <Compile Include="Assets\game\Scripts\World\Biome.cs" />
+    <Compile Include="Assets\game\Scripts\World\Generator.cs" />
+    <Compile Include="Assets\game\Scripts\World\Tile.cs" />
     <Compile Include="Assets\game\Skyboxes\MobileInput\Scripts\CrossPlatformInputManager.cs" />
     <Compile Include="Assets\game\Skyboxes\MobileInput\Scripts\Joystick.cs" />
     <Compile Include="Assets\game\Skyboxes\MobileInput\Scripts\MobileControlRig.cs" />
