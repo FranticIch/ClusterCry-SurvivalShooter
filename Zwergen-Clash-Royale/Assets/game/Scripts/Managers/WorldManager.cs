@@ -27,7 +27,7 @@ public class WorldManager : MonoBehaviour {
 	}
 	
 	void GenerateTileAt(int x, int z) {
-		GameObject tile = (GameObject)Instantiate(generator.GenerateTileAt(x, z, seed), new Vector3(x*10, 0, z*10), Quaternion.identity);
+		GameObject tile = (GameObject)Instantiate(generator.GenerateTileAt(x, z, seed), new Vector3(x*15, 0, z*15), Quaternion.identity);
 		tile.transform.parent = transform;
 		tiles.Add(tile);
 	}
