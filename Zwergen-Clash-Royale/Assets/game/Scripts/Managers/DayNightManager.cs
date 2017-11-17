@@ -8,7 +8,7 @@ public class DayNightManager : MonoBehaviour
     public GameObject lightObject;
     public GameObject parentObject;
 
-    private Light light;
+    Light light;
     private float elapsed;
 
     private float time;
