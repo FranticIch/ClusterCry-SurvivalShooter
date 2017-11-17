@@ -82,6 +82,10 @@ namespace CompleteProject
                 // ... it should die.
                 Death ();
             }
+            else
+            {
+                anim.SetTrigger("Damage");
+            }
         }
 
 
