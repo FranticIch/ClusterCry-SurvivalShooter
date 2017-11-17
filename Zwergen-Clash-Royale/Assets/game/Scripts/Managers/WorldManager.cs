@@ -5,13 +5,14 @@ using UnityEngine;
 public class WorldManager : MonoBehaviour {
 
 	public Generator generator;
+    public int worldSize;
 	
 	private List<GameObject> tiles = new List<GameObject>();
 	
 	private int seed;
 	
 	void Start () {
-		GenerateStartingArea(30);
+		GenerateStartingArea(worldSize);
 	}
 	
 	void Update () {
