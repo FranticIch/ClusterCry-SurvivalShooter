@@ -9,7 +9,7 @@ public class Generator : MonoBehaviour {
 	// public Dictionary<GameObject, float> biomes = new Dictionary<GameObject, float>();
 	
 	public GameObject GenerateTileAt(int x, int z, int seed){
-		return biomes[Random.Range(0, biomes.Length-1)].GetRandomTile(seed);
+		return biomes[Random.Range(0, biomes.Length)].GetRandomTile(seed);
 	}
 	
 }
