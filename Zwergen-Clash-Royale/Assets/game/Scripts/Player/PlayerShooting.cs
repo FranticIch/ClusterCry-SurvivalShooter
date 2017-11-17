@@ -28,7 +28,7 @@ namespace CompleteProject
         float countdownTimerMainWeapon;
         float countdownTimerSpecialWeapon;
 
-
+        Animator anim;
         PlayerMovement playerMovement;
         ParticleSystem gunParticles;
         CloseCombat closeCombatScript;
@@ -43,7 +43,8 @@ namespace CompleteProject
             playerMovement = GetComponentInParent<PlayerMovement>();
 
             gunAudio = GetComponent<AudioSource>();
-            
+
+            anim = GetComponentInParent<Animator>();
         }
 
         void Update ()
@@ -65,10 +66,12 @@ namespace CompleteProject
                 playerMovement.SlowDownModificator = 0.0f;
                 ShootBullet();
                 gunAudio.Play();
+                anim.SetTrigger("Shoot");
             }
 
             if (Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown)
             {
+                anim.SetTrigger("Grenade");
                 playerMovement.SlowDownModificator = 0.5f;
                 ThrowGrenade();
                 grenadeTimer = 0;
@@ -80,6 +83,7 @@ namespace CompleteProject
                 playerMovement.SlowDownModificator = 0.75f;
                 closeCombatScript.attack();
                 punchAudio.Play();
+                anim.SetTrigger("Attack");
             }
 
 
