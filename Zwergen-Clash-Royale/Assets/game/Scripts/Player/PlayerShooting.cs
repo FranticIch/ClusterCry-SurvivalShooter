@@ -28,16 +28,30 @@ namespace CompleteProject
         float countdownTimerMainWeapon;
         float countdownTimerSpecialWeapon;
 
+        float waitForGrenade;
+        bool startGrenadeTimer;
+
+        float waitForMusket;
+        bool startMusketTimer;
+        bool hasToLoad;
+
         Animator anim;
         PlayerMovement playerMovement;
         ParticleSystem gunParticles;
         CloseCombat closeCombatScript;
+
+
+        public GameObject Musket;
+        public GameObject MusketBack;
 
         AudioSource gunAudio;
         public AudioSource punchAudio;
         
         void Awake ()
         {
+            Musket.SetActive(false);
+            MusketBack.SetActive(true);
+
             gunParticles = GetComponent<ParticleSystem> ();
             closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
             playerMovement = GetComponentInParent<PlayerMovement>();
@@ -49,9 +63,47 @@ namespace CompleteProject
 
         void Update ()
         {
-
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
+
+            // If the Fire1 button is being press and it's time to fire...
+            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+            {
+                Musket.SetActive(true);
+                MusketBack.SetActive(false);
+                // ... shoot the gun.
+                playerMovement.SlowDownModificator = 0.0f;
+                startMusketTimer = true;
+                hasToLoad = false;
+                waitForMusket = 0.0f;
+
+
+                anim.SetTrigger("Shoot");
+            }
+
+            if (startMusketTimer)
+            {
+                waitForMusket += Time.deltaTime;
+            }
+
+            if (waitForMusket >=0.5f && !hasToLoad)
+            {
+                hasToLoad = true;
+                ShootBullet();
+                gunAudio.Play();
+ 
+  
+            }
+
+            if (waitForMusket >= 1.0f)
+            {
+                Musket.SetActive(false);
+                MusketBack.SetActive(true);
+                startMusketTimer = false;
+                waitForMusket = 0.0f;
+            }
+
+            //Granatenskript
             grenadeTimer += Time.deltaTime;
 
             if (timer > timeBetweenGrenades)
@@ -59,23 +111,32 @@ namespace CompleteProject
                 thrown = false;
             }
 
-            // If the Fire1 button is being press and it's time to fire...
-            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
-            {
-                // ... shoot the gun.
-                playerMovement.SlowDownModificator = 0.0f;
-                ShootBullet();
-                gunAudio.Play();
-                anim.SetTrigger("Shoot");
-            }
 
             if (Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown)
             {
                 anim.SetTrigger("Grenade");
                 playerMovement.SlowDownModificator = 0.5f;
-                ThrowGrenade();
+                waitForGrenade = 0.0f;
+                startGrenadeTimer = true;
+                waitForGrenade = 0.0f;
                 grenadeTimer = 0;
+
             }
+
+            if (startGrenadeTimer)
+            {
+                waitForGrenade += Time.deltaTime;
+            }
+
+            if(waitForGrenade >= 1f)
+            {
+                waitForMusket = 0.0f;
+                ThrowGrenade();
+                startGrenadeTimer = false;
+            }
+
+            //Nahkampfskript
+
 
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -104,11 +165,8 @@ namespace CompleteProject
                 waitForMovement = 0.0f;
                 playerMovement.SlowDownModificator = 1.0f;
             }
-        }
 
-        private void FixedUpdate()
-        {
-            
+
         }
 
 
@@ -123,10 +181,9 @@ namespace CompleteProject
             Rigidbody grenadeInstance = Instantiate(grenade, throwTransform.position, throwTransform.rotation) as Rigidbody;
 
             grenadeInstance.velocity = throwSpeed * throwTransform.forward;
-            
-
+            waitForGrenade = 0.0f;
             //AUDIO
-        
+
         }
 
         void ShootBullet()
@@ -175,6 +232,14 @@ namespace CompleteProject
                     countdownTimerSpecialWeapon = (int)timeBetweenGrenades;
                     return "Bereit";
                 }
+            }
+        }
+
+        public bool MusketTimer
+        {
+            get
+            {
+                return startMusketTimer;
             }
         }
     }
