@@ -53,4 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Forest
   tilePrefabs:
-  - {fileID: 1682636220588412, guid: 5211f37d9adf3874f9674b1d255a5483, type: 2}
+  - {fileID: 1132264296675088, guid: 4e873af934e851e4cb45e15db76ac63b, type: 2}
+  - {fileID: 1037183469583126, guid: bb8b419e3f5870f4cbb9804fd615afdc, type: 2}
+  - {fileID: 1688300377755312, guid: 85815d68259627c44a7fefe7dda7dd37, type: 2}
+  - {fileID: 1030411863184458, guid: 9ce8f3d592e9be541b02a57ab4240268, type: 2}
+  - {fileID: 1030411863184458, guid: 9ce8f3d592e9be541b02a57ab4240268, type: 2}
+  - {fileID: 1321928857493462, guid: bf7b0439bf4d163408452e03d040302d, type: 2}
