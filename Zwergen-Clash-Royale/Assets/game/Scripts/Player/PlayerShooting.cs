@@ -34,6 +34,7 @@ namespace CompleteProject
         float waitForMusket;
         bool startMusketTimer;
         bool hasToLoad;
+        bool rotationAllowed;
 
         Animator anim;
         PlayerMovement playerMovement;
@@ -43,12 +44,15 @@ namespace CompleteProject
 
         public GameObject Musket;
         public GameObject MusketBack;
+        public GameObject Player;
 
         AudioSource gunAudio;
         public AudioSource punchAudio;
         
         void Awake ()
         {
+            rotationAllowed = true;
+
             Musket.SetActive(false);
             MusketBack.SetActive(true);
 
@@ -67,23 +71,29 @@ namespace CompleteProject
             timer += Time.deltaTime;
 
             // If the Fire1 button is being press and it's time to fire...
-            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0 && rotationAllowed)
             {
-                Musket.SetActive(true);
-                MusketBack.SetActive(false);
+                rotationAllowed = false;
+
+
                 // ... shoot the gun.
                 playerMovement.SlowDownModificator = 0.0f;
                 startMusketTimer = true;
                 hasToLoad = false;
                 waitForMusket = 0.0f;
-
-
+                Player.transform.Rotate(new Vector3(0, 45));
                 anim.SetTrigger("Shoot");
             }
 
             if (startMusketTimer)
             {
                 waitForMusket += Time.deltaTime;
+            }
+
+            if(waitForMusket >= 0.2f && !hasToLoad)
+            {
+                Musket.SetActive(true);
+                MusketBack.SetActive(false);
             }
 
             if (waitForMusket >=0.5f && !hasToLoad)
@@ -100,6 +110,7 @@ namespace CompleteProject
                 Musket.SetActive(false);
                 MusketBack.SetActive(true);
                 startMusketTimer = false;
+                rotationAllowed = true;
                 waitForMusket = 0.0f;
             }
 
