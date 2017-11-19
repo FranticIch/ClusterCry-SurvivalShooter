@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: f0d863453e861394981c264d181e77a9
-timeCreated: 1510231656
+guid: 4636c6a6837000b4eaf72b46cfc0f599
+timeCreated: 1511128505
 licenseType: Free
 ModelImporter:
-  serializedVersion: 21
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: default
-    100002: default_MeshPart0
-    100004: default_MeshPart1
-    100006: //RootNode
+    100002: //RootNode
     400000: default
-    400002: default_MeshPart0
-    400004: default_MeshPart1
-    400006: //RootNode
-    2300000: default_MeshPart0
-    2300002: default_MeshPart1
-    3300000: default_MeshPart0
-    3300002: default_MeshPart1
-    4300000: default_MeshPart0
-    4300002: default_MeshPart1
+    400002: //RootNode
+    2300000: default
+    3300000: default
+    4300000: default
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultMat
+    second: {fileID: 2100000, guid: 9590e6c8454bd2d48a0cb0e44d4ccfa3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -35,6 +35,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
