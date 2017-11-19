@@ -35,6 +35,8 @@ namespace CompleteProject
         bool startMusketTimer;
         bool hasToLoad;
         bool rotationAllowed;
+        bool meleeAllowed;
+        float meleeTimer;
 
         Animator anim;
         PlayerMovement playerMovement;
@@ -52,6 +54,7 @@ namespace CompleteProject
         void Awake ()
         {
             rotationAllowed = true;
+            meleeAllowed = true;
 
             Musket.SetActive(false);
             MusketBack.SetActive(true);
@@ -69,6 +72,7 @@ namespace CompleteProject
         {
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
+            meleeTimer += Time.deltaTime;
 
             // If the Fire1 button is being press and it's time to fire...
             if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0 && rotationAllowed)
@@ -149,13 +153,21 @@ namespace CompleteProject
             //Nahkampfskript
 
 
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) && meleeAllowed)
             {
-
+                meleeTimer = 0.0f;
+                meleeAllowed = false;
                 playerMovement.SlowDownModificator = 0.75f;
+                anim.SetTrigger("Attack");
+
+            }
+
+            if(meleeTimer >= 1.0f && !meleeAllowed)
+            {
                 closeCombatScript.attack();
                 punchAudio.Play();
-                anim.SetTrigger("Attack");
+                meleeAllowed = true;
+
             }
 
 
