@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class VillageManager : MonoBehaviour {
 
-    public Transform[] spawnPoints;
+    public Transform spawnPoint;
     public float spawntime = 30f;
     public GameObject enemy;
 
-    List<GameObject> enemys;
+    List<GameObject> enemys = new List<GameObject> { };
     int count = 0;
 
     // Use this for initialization
     void Start () {
-        InvokeRepeating("Spawn", 0f, spawntime);
+        InvokeRepeating("Spawn", 0f, 2f);
 	}
 	
 
@@ -32,8 +32,8 @@ public class VillageManager : MonoBehaviour {
     {
         if(enemys.Count<3)
         {
-            enemys.Add(Instantiate(enemy, spawnPoints[count].position, spawnPoints[count].rotation));
-            count++;
+            enemys.Add(Instantiate(enemy, spawnPoint.position, spawnPoint.rotation));
+            
         }
 
     }
