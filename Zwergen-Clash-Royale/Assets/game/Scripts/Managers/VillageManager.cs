@@ -12,7 +12,6 @@ public class VillageManager : MonoBehaviour {
     List<GameObject> enemys = new List<GameObject> { };
     int count = 0;
 
-    // Use this for initialization
     void Start () {
         InvokeRepeating("Spawn", 0f, 2f);
 	}
