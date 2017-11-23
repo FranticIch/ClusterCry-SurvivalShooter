@@ -33,6 +33,10 @@ public class VillageManager : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             isInRange = true;
+            for (int i = 0; i < enemys.Count; i++)
+            {
+                enemys[i].GetComponent<EnemyMovement>().RangeTrigger();
+            }
         }
     }
 
@@ -40,6 +44,10 @@ public class VillageManager : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
+            for (int i = 0; i < enemys.Count; i++)
+            {
+                enemys[i].GetComponent<EnemyMovement>().NotRangeTrigger();
+            }
             isInRange = false;
         }
     }
@@ -48,6 +56,10 @@ public class VillageManager : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
+            for (int i = 0; i < enemys.Count; i++)
+            {
+                enemys[i].GetComponent<EnemyMovement>().RangeTrigger();
+            }
             isInRange = true;
         }
     }

@@ -36,20 +36,20 @@ namespace CompleteProject
         }
 
         void Update()
+        {            
+        }
+
+        public void RangeTrigger()
         {
+            nav.enabled = true;
+            nav.SetDestination(player.position);
+            NearSpawnPoint();
+        }
 
-            if (village.GetComponent<VillageManager>().isInRange)
-            {
-                nav.enabled = true;
-                nav.SetDestination(player.position);
-            }
-
-            else
-            {
-                nav.enabled = true;
-                nav.SetDestination(spawnPoint.position);
-            }
-
+        public void NotRangeTrigger()
+        {
+            nav.enabled = true;
+            nav.SetDestination(spawnPoint.position);
             NearSpawnPoint();
         }
 
@@ -67,13 +67,11 @@ namespace CompleteProject
                 {
                     Debug.Log("Bleib stehen");
                     anim.SetTrigger("Stand");
-                    nav.enabled = false;
                 }
                 else
                 {
                     Debug.Log("Lauf");
                     anim.SetTrigger("Move");
-                    nav.enabled = true;
                 }
             }
         }

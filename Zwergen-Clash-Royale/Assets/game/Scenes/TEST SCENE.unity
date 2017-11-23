@@ -3559,6 +3559,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 580766321}
   spawntime: 30
   enemy: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c, type: 2}
+  isInRange: 0
 --- !u!65 &1309076385
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4272,7 +4273,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 4e5a0d387dc27394b81600988ad0216f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 4e5a0d387dc27394b81600988ad0216f, type: 2}
       propertyPath: m_LocalRotation.x
