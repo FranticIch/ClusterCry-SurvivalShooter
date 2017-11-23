@@ -5,9 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - CombatDectector
-  - Weapon
-  - Village
+  - GoTrough
   layers:
   - Default
   - TransparentFX

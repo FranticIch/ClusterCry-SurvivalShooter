@@ -59,5 +59,11 @@ namespace CompleteProject
             anim.SetTrigger("Stand");
         }
 
+        public void NotNearSpawnPoint()
+        {
+            nav.enabled = true;
+            anim.SetTrigger("Move");
+        }
+
     }    
 }

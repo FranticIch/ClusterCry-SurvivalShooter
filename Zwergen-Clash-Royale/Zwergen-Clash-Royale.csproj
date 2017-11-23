@@ -271,6 +271,7 @@
     <Compile Include="Assets\game\Scripts\Enemy\goblinLaugh.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\RandomAnimationPoint.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\RandomParticlePoint.cs" />
+    <Compile Include="Assets\game\Scripts\Helpers\SpawnPoint.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\VolumeHandler.cs" />
     <Compile Include="Assets\game\Scripts\Items\BulletExplosion.cs" />
     <Compile Include="Assets\game\Scripts\Items\ThrowGrenade.cs" />
