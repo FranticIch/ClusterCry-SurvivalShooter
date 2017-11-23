@@ -43,37 +43,20 @@ namespace CompleteProject
         {
             nav.enabled = true;
             nav.SetDestination(player.position);
-            NearSpawnPoint();
+            isInRange = true;
         }
 
         public void NotRangeTrigger()
         {
             nav.enabled = true;
             nav.SetDestination(spawnPoint.position);
-            NearSpawnPoint();
+            isInRange = false;
         }
 
-        private void NearSpawnPoint()
+        public void NearSpawnPoint()
         {
-            Collider[] colliders = Physics.OverlapSphere(spawnPoint.position, 1f, enemyMask);
-
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                Debug.Log(colliders[i].name);
-                Debug.Log(colliders[i].GetInstanceID());
-                Debug.Log(this.GetInstanceID());
-
-                if (colliders[i].gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
-                {
-                    Debug.Log("Bleib stehen");
-                    anim.SetTrigger("Stand");
-                }
-                else
-                {
-                    Debug.Log("Lauf");
-                    anim.SetTrigger("Move");
-                }
-            }
+            nav.enabled = false;
+            anim.SetTrigger("Stand");
         }
 
     }    
