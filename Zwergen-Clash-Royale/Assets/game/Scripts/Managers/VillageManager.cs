@@ -8,6 +8,7 @@ public class VillageManager : MonoBehaviour {
     public Transform spawnPoint;
     public float spawntime = 30f;
     public GameObject enemy;
+    public bool isInRange = false;
 
     List<GameObject> enemys = new List<GameObject> { };
     int count = 0;
@@ -27,7 +28,32 @@ public class VillageManager : MonoBehaviour {
         }
 	}
 
-    void Spawn()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isInRange = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isInRange = true;
+        }
+    }
+
+
+void Spawn()
     {
         if(enemys.Count<3)
         {

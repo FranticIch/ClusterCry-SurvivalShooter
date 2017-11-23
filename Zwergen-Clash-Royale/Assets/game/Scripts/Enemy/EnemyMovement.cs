@@ -18,32 +18,35 @@ namespace CompleteProject
         public LayerMask enemyMask;
 
 
-        void Awake ()
+        void Awake()
         {
             // Set up the references.
-            player = GameObject.FindGameObjectWithTag ("Player").transform;
-            playerHealth = player.GetComponent <PlayerHealth> ();
-            enemyHealth = GetComponent <EnemyHealth> ();
-            nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            playerHealth = player.GetComponent<PlayerHealth>();
+            enemyHealth = GetComponent<EnemyHealth>();
+            nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
             anim = GetComponent<Animator>();
-            
+
         }
 
         private void Start()
         {
             spawnPoint = village.transform;
+            nav.enabled = false;
         }
 
-        void Update ()
+        void Update()
         {
 
-            if(isInRange)
+            if (village.GetComponent<VillageManager>().isInRange)
             {
-                nav.SetDestination (player.position);
+                nav.enabled = true;
+                nav.SetDestination(player.position);
             }
 
             else
             {
+                nav.enabled = true;
                 nav.SetDestination(spawnPoint.position);
             }
 
@@ -54,46 +57,26 @@ namespace CompleteProject
         {
             Collider[] colliders = Physics.OverlapSphere(spawnPoint.position, 1f, enemyMask);
 
-            for(int i=0; i<colliders.Length; i++)
+            for (int i = 0; i < colliders.Length; i++)
             {
                 Debug.Log(colliders[i].name);
                 Debug.Log(colliders[i].GetInstanceID());
                 Debug.Log(this.GetInstanceID());
 
                 if (colliders[i].gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
-                    {
-                        Debug.Log("Bleib stehen");
-                        anim.SetTrigger("Stand");
-                    } else
-                    {
-                        Debug.Log("Lauf");
-                        anim.SetTrigger("Move");
-                    }
+                {
+                    Debug.Log("Bleib stehen");
+                    anim.SetTrigger("Stand");
+                    nav.enabled = false;
+                }
+                else
+                {
+                    Debug.Log("Lauf");
+                    anim.SetTrigger("Move");
+                    nav.enabled = true;
+                }
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.CompareTag("Player"))
-            {
-                isInRange = true;
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if(other.CompareTag("Player"))
-            {
-                isInRange = false;
-            }
-        }
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                isInRange = true;
-            }
-        }
-    }
+    }    
 }
