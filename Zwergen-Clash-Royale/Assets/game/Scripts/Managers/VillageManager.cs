@@ -65,7 +65,7 @@ public class VillageManager : MonoBehaviour {
     }
 
 
-void Spawn()
+    void Spawn()
     {
         if(enemys.Count<3)
         {

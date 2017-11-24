@@ -379,9 +379,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nav: {fileID: 0}
   village: {fileID: 1865990116347782, guid: 5038f733a46ce4e499fe0c9dd3be325e, type: 2}
-  enemyMask:
+  spawnPoint: {fileID: 1138356585151918, guid: 5038f733a46ce4e499fe0c9dd3be325e, type: 2}
+  spawnPoints:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8192
+  preferedDistanceToSpawnpoint: 7.5
 --- !u!114 &114487666294269366
 MonoBehaviour:
   m_ObjectHideFlags: 1
