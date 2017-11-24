@@ -25,7 +25,7 @@ public class ThrowGrenade : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("CombatDectector")&& !other.gameObject.CompareTag("Village"))
+        if (!other.gameObject.CompareTag("GoTrough"))
         {
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, enemyMask);
