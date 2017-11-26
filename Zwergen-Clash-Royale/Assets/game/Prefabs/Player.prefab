@@ -1041,6 +1041,7 @@ MonoBehaviour:
   Musket: {fileID: 1593647148050778}
   MusketBack: {fileID: 1356084397743942}
   Player: {fileID: 100006}
+  Pickaxe: {fileID: 1638878767447330}
   punchAudio: {fileID: 82236486739632356}
 --- !u!114 &114668845941651222
 MonoBehaviour:
@@ -1254,7 +1255,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1025359477
+  randomSeed: -1037830000
   InitialModule:
     serializedVersion: 3
     enabled: 1
