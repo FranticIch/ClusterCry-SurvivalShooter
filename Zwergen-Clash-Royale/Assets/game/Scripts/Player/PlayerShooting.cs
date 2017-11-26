@@ -47,6 +47,7 @@ namespace CompleteProject
         public GameObject Musket;
         public GameObject MusketBack;
         public GameObject Player;
+        public GameObject Pickaxe;
 
         AudioSource gunAudio;
         public AudioSource punchAudio;
@@ -58,6 +59,7 @@ namespace CompleteProject
 
             Musket.SetActive(false);
             MusketBack.SetActive(true);
+            Pickaxe.SetActive(true);
 
             gunParticles = GetComponent<ParticleSystem> ();
             closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
@@ -98,6 +100,7 @@ namespace CompleteProject
             {
                 Musket.SetActive(true);
                 MusketBack.SetActive(false);
+                Pickaxe.SetActive(false);
             }
 
             if (waitForMusket >=0.5f && !hasToLoad)
@@ -113,6 +116,7 @@ namespace CompleteProject
             {
                 Musket.SetActive(false);
                 MusketBack.SetActive(true);
+                Pickaxe.SetActive(true);
                 startMusketTimer = false;
                 rotationAllowed = true;
                 waitForMusket = 0.0f;
@@ -136,6 +140,8 @@ namespace CompleteProject
                 waitForGrenade = 0.0f;
                 grenadeTimer = 0;
 
+                Pickaxe.SetActive(false);
+
             }
 
             if (startGrenadeTimer)
@@ -148,6 +154,7 @@ namespace CompleteProject
                 waitForMusket = 0.0f;
                 ThrowGrenade();
                 startGrenadeTimer = false;
+                Pickaxe.SetActive(true);
             }
 
             //Nahkampfskript
