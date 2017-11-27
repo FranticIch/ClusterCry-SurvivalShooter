@@ -21,7 +21,7 @@ public class VillageManager : MonoBehaviour {
 	void FixedUpdate () {
 		for(int i=0; i< enemys.Count; i++)
         {
-            if (enemys[i]==null)
+            if (enemys[i].GetComponent<EnemyHealth>().isDead)
             {
                 enemys.RemoveAt(i);
             }
@@ -33,9 +33,13 @@ public class VillageManager : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             isInRange = true;
-            for (int i = 0; i < enemys.Count; i++)
+            if (enemys.Count > 0)
             {
-                enemys[i].GetComponent<EnemyMovement>().RangeTrigger();
+                for (int i = 0; i < enemys.Count; i++)
+                {
+                    if (!enemys[i].GetComponent<EnemyHealth>().isDead)
+                        enemys[i].GetComponent<EnemyMovement>().RangeTrigger();
+                }
             }
         }
     }
@@ -44,25 +48,20 @@ public class VillageManager : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            for (int i = 0; i < enemys.Count; i++)
+            if (enemys.Count > 0)
             {
-                enemys[i].GetComponent<EnemyMovement>().NotRangeTrigger();
+                for (int i = 0; i < enemys.Count; i++)
+                {
+                    if (!enemys[i].GetComponent<EnemyHealth>().isDead)
+                        enemys[i].GetComponent<EnemyMovement>().NotRangeTrigger();
+                }
             }
+            
             isInRange = false;
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            for (int i = 0; i < enemys.Count; i++)
-            {
-                enemys[i].GetComponent<EnemyMovement>().RangeTrigger();
-            }
-            isInRange = true;
-        }
-    }
+    
 
 
     void Spawn()
