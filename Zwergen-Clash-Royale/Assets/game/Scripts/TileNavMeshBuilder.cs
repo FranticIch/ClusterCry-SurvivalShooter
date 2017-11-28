@@ -2,51 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEditor.AI;
 
 public class TileNavMeshBuilder : MonoBehaviour {
 
-    public GameObject boundsBox;
-    List<NavMeshBuildSource> sources;
-    NavMeshData data;
+	public Transform tlink_top_in;
+	public Transform tlink_top_out;
 
+	
+	NavMeshDataInstance instance;
+	NavMeshLinkInstance linstance_top;
+	NavMeshLinkInstance linstance_right;	
+	
     void Start () {
-
-        sources = new List<NavMeshBuildSource>();
-
-        Collider boundsBoxCollider = boundsBox.GetComponent<Collider>();
-
-        Bounds bounds = new Bounds();
-        bounds.center = boundsBoxCollider.bounds.center;
-        bounds.size = boundsBoxCollider.bounds.size;
-        bounds.SetMinMax(boundsBoxCollider.bounds.min, boundsBoxCollider.bounds.max);
-
-        NavMeshBuilder.CollectSources(bounds, 0, NavMeshCollectGeometry.PhysicsColliders, 0, new List< NavMeshBuildMarkup>(), sources);
-        
-        data = NavMeshBuilder.BuildNavMeshData(NavMesh.GetSettingsByID(0), sources, bounds, bounds.center, Quaternion.identity);
-        Debug.Log(data != null);
-        
+		CreateNavMesh();
+		CreateLinks();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void OnDestroy(){
+		NavMesh.RemoveNavMeshData(instance);
+		// Destroy(m_NavMeshData);
 	}
 
-    //void Generate(Mesh mesh) {
+	void Update () {
+		//NavMeshEditorHelpers.DrawBuildDebug(m_NavMeshData, NavMeshBuildDebugFlags.Regions | NavMeshBuildDebugFlags.SimplifiedContours);
+	}
+	
+	void CreateNavMesh(){
+		var bounds = new Bounds(transform.position, new Vector3(15.0f, 1.0f, 15.0f));
+        var markups = new List<NavMeshBuildMarkup>();
+        var sources = new List<NavMeshBuildSource>();
+        UnityEngine.AI.NavMeshBuilder.CollectSources(bounds, ~0, NavMeshCollectGeometry.RenderMeshes, 0, markups, sources);
+        var settings = NavMesh.GetSettingsByID(0);
+        // var debug = new NavMeshBuildDebugSettings();
+        // debug.flags = NavMeshBuildDebugFlags.All;
+        // settings.debug = debug;
 
-    //    var filter = tile.AddComponent<MeshFilter>();
-    //    filter.mesh = mesh;
+        NavMeshData m_NavMeshData = new NavMeshData();
+        UnityEngine.AI.NavMeshBuilder.UpdateNavMeshData(m_NavMeshData, settings, sources, bounds);
+		instance = NavMesh.AddNavMeshData(m_NavMeshData);
+	}
+	
+	void CreateLinks(){
+		NavMeshLinkData link_top = new NavMeshLinkData();
+		link_top.agentTypeID = 0;
+		link_top.area = 13;
+		link_top.startPosition = tlink_top_in.position;
+		link_top.endPosition = tlink_top_out.position;
+		
+		linstance_top = NavMesh.AddLink(link_top);
+		
+		// NavMeshLinkData link_top_out = new NavMeshLinkData();
+		// link_top_out.agentTypeID = 0;
+		// link_top_out.area = 13;
+		// link_top_out.startPosition = tlink_top_in.position;
+	}
 
-    //    NavMeshBuildSource src = new NavMeshBuildSource();
-    //    src.transform = transform.localToWorldMatrix;
-    //    src.shape = NavMeshBuildSourceShape.Mesh;
-    //    src.sourceObject = filter.mesh;
-    //    src.area = 0;
-    //    //source.size = mesh.bounds.size;
-
-    //    var sources = new List<NavMeshBuildSource>();
-    //    sources.Add(src);
-
-    //    NavMeshBuilder.UpdateNavMeshData(navData, NavMesh.GetSettingsByIndex(0), sources, mesh.bounds);
-    //}
 }
