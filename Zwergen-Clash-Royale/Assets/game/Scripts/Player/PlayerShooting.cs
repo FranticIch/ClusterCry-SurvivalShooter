@@ -18,12 +18,15 @@ namespace CompleteProject
         public Transform throwTransform;                    
         public Light faceLight;
         public Transform closeCombatDetector;
+        //public Inventory inventory;
 
         float timer;                                    // A timer to determine when to fire.
         float grenadeTimer = 5f;
         float effectsDisplayTime = 0.2f;
         float waitForMovement;
         bool thrown;
+        int grenadeAmmunition = 3;
+        int musketAmmunition = 5;
 
         float countdownTimerMainWeapon;
         float countdownTimerSpecialWeapon;
@@ -68,6 +71,8 @@ namespace CompleteProject
             gunAudio = GetComponent<AudioSource>();
 
             anim = GetComponentInParent<Animator>();
+
+           
         }
 
         void Update ()
@@ -76,8 +81,11 @@ namespace CompleteProject
             timer += Time.deltaTime;
             meleeTimer += Time.deltaTime;
 
+            //grenadeAmmunition = grenadesInInventory;
+            //musketAmmunition = bulletsInInventory;
+
             // If the Fire1 button is being press and it's time to fire...
-            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0 && rotationAllowed)
+            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0 && rotationAllowed && /*bulletsInInventory*/musketAmmunition>0)
             {
                 rotationAllowed = false;
 
@@ -89,6 +97,7 @@ namespace CompleteProject
                 waitForMusket = 0.0f;
                 Player.transform.Rotate(new Vector3(0, 45));
                 anim.SetTrigger("Shoot");
+
             }
 
             if (startMusketTimer)
@@ -108,8 +117,8 @@ namespace CompleteProject
                 hasToLoad = true;
                 ShootBullet();
                 gunAudio.Play();
- 
-  
+
+
             }
 
             if (waitForMusket >= 1.0f)
@@ -131,7 +140,7 @@ namespace CompleteProject
             }
 
 
-            if (Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown)
+            if (Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown && /* bulletsInInventory */ grenadeAmmunition >0)
             {
                 anim.SetTrigger("Grenade");
                 playerMovement.SlowDownModificator = 0.5f;
@@ -196,6 +205,8 @@ namespace CompleteProject
                 playerMovement.SlowDownModificator = 1.0f;
             }
 
+            
+
 
         }
 
@@ -212,8 +223,10 @@ namespace CompleteProject
 
             grenadeInstance.velocity = throwSpeed * throwTransform.forward;
             waitForGrenade = 0.0f;
+            grenadeAmmunition--;
             //AUDIO
-
+            //inventory.removeItem("grenade");
+            Debug.Log("Granaten: " + grenadeAmmunition);
         }
 
         void ShootBullet()
@@ -226,6 +239,10 @@ namespace CompleteProject
             Rigidbody bulletInstance = Instantiate(bullet, gunBarrelEnd.position, gunBarrelEnd.rotation) as Rigidbody;
 
             bulletInstance.velocity = 20f * gunBarrelEnd.forward;
+
+            musketAmmunition--;
+            //invetory.removeItem("bullet");
+            Debug.Log("Kugeln: " + musketAmmunition);
         }
 
         public string MainWeaponTimer
@@ -270,6 +287,24 @@ namespace CompleteProject
             get
             {
                 return startMusketTimer;
+            }
+        }
+
+        public int bulletsInInventory
+        {
+            get
+            {
+                //return invetory.bullets;
+                return 5;
+            }
+        }
+
+        public int grenadesInInventory
+        {
+            get
+            {
+                //return inventory.grenades
+                return 3;
             }
         }
     }
