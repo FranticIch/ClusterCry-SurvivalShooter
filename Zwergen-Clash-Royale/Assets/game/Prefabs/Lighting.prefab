@@ -169,7 +169,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.9460446, b: 0.7205882, a: 1}
-  m_Intensity: 0.27170587
+  m_Intensity: 1.1375084
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -177,9 +177,9 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.7
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97adc1583c2936d4da293fe25d241459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  night: 0
+  Night: 0
   lightObject: {fileID: 1460636351738414}
   parentObject: {fileID: 1695727883849952}
   selectedTimeForEffect: 360
