@@ -44,6 +44,22 @@ public class VillageManager : MonoBehaviour {
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isInRange = true;
+            if (enemys.Count > 0)
+            {
+                for (int i = 0; i < enemys.Count; i++)
+                {
+                    if (!enemys[i].GetComponent<EnemyHealth>().isDead)
+                        enemys[i].GetComponent<EnemyMovement>().RangeTrigger();
+                }
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
