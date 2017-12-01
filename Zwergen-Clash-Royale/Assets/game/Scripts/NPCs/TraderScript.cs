@@ -14,7 +14,7 @@ public class TraderScript : MonoBehaviour {
 		
 	}
 
-    public void Test(Quaternion playerrotation)
+    public void Test()
     {
         Debug.Log("Hello there");
         //transform.rotation = playerrotation*

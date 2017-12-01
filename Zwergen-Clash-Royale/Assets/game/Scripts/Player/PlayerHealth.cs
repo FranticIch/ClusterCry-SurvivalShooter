@@ -23,6 +23,8 @@ namespace CompleteProject
         PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
         bool isDead;                                                // Whether the player is dead.
         bool damaged;                                               // True when the player gets damaged.
+        //Inventory inventory;
+        int healthpotions;
 
 
 
@@ -33,9 +35,11 @@ namespace CompleteProject
             playerAudio = GetComponent <AudioSource> ();
             playerMovement = GetComponent <PlayerMovement> ();
             playerShooting = GetComponentInChildren <PlayerShooting> ();
+            //inventory = GetComponent<Inventory>();
 
             // Set the initial health of the player.
             currentHealth = startingHealth;
+            setHealthpotions();
         }
 
 
@@ -56,6 +60,15 @@ namespace CompleteProject
 
             // Reset the damaged flag.
             damaged = false;
+
+            
+            
+            if (Input.GetKeyDown(KeyCode.H) &&  healthpotions>=1)
+            {
+                takeHealthPotion();
+                Debug.Log("Health: " + currentHealth);
+            }
+            
         }
 
 
@@ -88,6 +101,13 @@ namespace CompleteProject
             }
         }
 
+        void takeHealthPotion()
+        {
+            //inventory.removeItem("healthpotion");
+            healthpotions--;
+            currentHealth += 30;
+        }
+
 
         void Death ()
         {
@@ -114,6 +134,12 @@ namespace CompleteProject
         {
             // Reload the level that is currently loaded.
             SceneManager.LoadScene (0);
+        }
+
+        private void setHealthpotions()
+        {
+            //healthpotions = inventory.getQuantityOfItem("healthpotion");
+            healthpotions = 1;
         }
     }
 }
