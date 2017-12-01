@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ba2a852ef8f62dc4eb6c516244deb258
-timeCreated: 1510909084
+timeCreated: 1512089276
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -31,6 +31,7 @@ ModelImporter:
     100046: mixamorig:Spine
     100048: mixamorig:Spine1
     100050: mixamorig:Spine2
+    100052: unamed
     400000: //RootNode
     400002: mixamorig:Head
     400004: mixamorig:HeadTop_End
@@ -57,9 +58,17 @@ ModelImporter:
     400046: mixamorig:Spine
     400048: mixamorig:Spine1
     400050: mixamorig:Spine2
+    400052: unamed
+    4300000: unamed
     7400000: mixamo.com
     9500000: //RootNode
-  externalObjects: {}
+    13700000: unamed
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: c03ed5903f6588b4d86a621b9db4281c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -130,6 +139,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
