@@ -8,9 +8,9 @@ using UnityEditor.AI;
 public class NavMeshGenerator : MonoBehaviour {
 
 	NavMeshDataInstance instance;	
-	 NavMeshData m_NavMeshData ;
+	NavMeshData m_NavMeshData;
+	
     void Start () {
-		CalculateMesh(1, new Vector3(0,0,0));
     }
 
 	void Update () {
@@ -18,7 +18,7 @@ public class NavMeshGenerator : MonoBehaviour {
 	}
 	
 	void CalculateMesh(int width, Vector3 position){
-		var bounds = new Bounds(transform.position, new Vector3(15, 1.0f, 15));
+		var bounds = new Bounds(transform.position, new Vector3(width*15, 1.0f, width*15));
         var markups = new List<NavMeshBuildMarkup>();
         var sources = new List<NavMeshBuildSource>();
         UnityEngine.AI.NavMeshBuilder.CollectSources(bounds, ~0, NavMeshCollectGeometry.PhysicsColliders, 0, markups, sources);
@@ -34,11 +34,11 @@ public class NavMeshGenerator : MonoBehaviour {
 	}
 	
 	public void RecalculateMesh(int width, Vector3 position) {
-		//Unload();
+		Unload();
 		CalculateMesh(width, position);
 	}
 	
-	// void Unload(){
-		// NavMesh.RemoveNavMeshData(instance);
-	// }
+	void Unload(){
+		NavMesh.RemoveNavMeshData(instance);
+	}
 }
