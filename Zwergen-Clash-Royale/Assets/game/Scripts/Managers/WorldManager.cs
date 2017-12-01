@@ -7,24 +7,29 @@ public class WorldManager : MonoBehaviour {
 	public Generator generator;
     public int worldSize;
 	
+	private NavMeshGenerator navGen;
+	
 	private List<GameObject> tiles = new List<GameObject>();
 	
 	private int seed;
 	
 	void Start () {
-		GenerateStartingArea(worldSize);
+		navGen = GetComponent<NavMeshGenerator>();
+		GenerateChunk();
 	}
 	
 	void Update () {
 		
 	}
 	
-	void GenerateStartingArea(int size) {
-		for(int z = 0; z < size; z++) {
-			for(int x = 0; x < size; x++) {
+	void GenerateChunk() {
+		//Add Offset
+		for(int z = 0; z < generator.chunkSize; z++) {
+			for(int x = 0; x < generator.chunkSize; x++) {
 				GenerateTileAt(x, z);
 			}
 		}
+		navGen.RecalculateMesh(generator.chunkSize*100, new Vector3(generator.chunkSize/2, 0, generator.chunkSize/2));
 	}
 	
 	void GenerateTileAt(int x, int z) {
