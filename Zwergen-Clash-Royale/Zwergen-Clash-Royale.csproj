@@ -291,15 +291,24 @@
     <Compile Include="Assets\game\Scripts\Managers\GameOverManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\PauseManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\ScoreManager.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\game\Scripts\Managers\SkillUIManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\VillageManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\WorldManager.cs" />
     <Compile Include="Assets\game\Scripts\NPCs\TraderScript.cs" />
+=======
+    <Compile Include="Assets\game\Scripts\Managers\UIManagers\DayNightManagerUI.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\UIManagers\SkillUIManager.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\WorldManager.cs" />
+>>>>>>> UI
     <Compile Include="Assets\game\Scripts\Player\CloseCombat.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerShooting.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\game\Scripts\Player\PlayerTrading.cs" />
+=======
+>>>>>>> UI
     <Compile Include="Assets\game\Scripts\World\Biome.cs" />
     <Compile Include="Assets\game\Scripts\World\Generator.cs" />
     <Compile Include="Assets\game\Scripts\World\Tile.cs" />
