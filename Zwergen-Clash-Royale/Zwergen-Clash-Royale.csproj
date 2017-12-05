@@ -296,6 +296,7 @@
     <Compile Include="Assets\game\Scripts\Managers\WorldManager.cs" />
     <Compile Include="Assets\game\Scripts\NPCs\TraderScript.cs" />
     <Compile Include="Assets\game\Scripts\Player\CloseCombat.cs" />
+    <Compile Include="Assets\game\Scripts\Player\Grenade.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerShooting.cs" />

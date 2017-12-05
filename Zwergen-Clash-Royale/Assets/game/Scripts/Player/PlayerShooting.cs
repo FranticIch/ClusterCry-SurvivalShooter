@@ -7,32 +7,28 @@ namespace CompleteProject
     public class PlayerShooting : MonoBehaviour
     {
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
-        public float timeBetweenGrenades = 2f;
-        public float throwSpeed = 5f;
+
 
         public float weaponSlowdown = 1.0f;
 
-        public Rigidbody grenade;
+
         public Rigidbody bullet;
-        public Transform gunBarrelEnd;
-        public Transform throwTransform;                    
+        public GameObject gunBarrelEnd;                  
         public Light faceLight;
         public Transform closeCombatDetector;
         //public Inventory inventory;
 
         float timer;                                    // A timer to determine when to fire.
-        float grenadeTimer = 5f;
+
         float effectsDisplayTime = 0.2f;
         float waitForMovement;
-        bool thrown;
-        int grenadeAmmunition = 3;
+
+
         int musketAmmunition = 5;
 
         float countdownTimerMainWeapon;
-        float countdownTimerSpecialWeapon;
 
-        float waitForGrenade;
-        bool startGrenadeTimer;
+
 
         float waitForMusket;
         bool startMusketTimer;
@@ -64,7 +60,7 @@ namespace CompleteProject
             MusketBack.SetActive(true);
             Pickaxe.SetActive(true);
 
-            gunParticles = GetComponent<ParticleSystem> ();
+            gunParticles = gunBarrelEnd.GetComponent<ParticleSystem> ();
             closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
             playerMovement = GetComponentInParent<PlayerMovement>();
 
@@ -132,39 +128,9 @@ namespace CompleteProject
             }
 
             //Granatenskript
-            grenadeTimer += Time.deltaTime;
+            
 
-            if (timer > timeBetweenGrenades)
-            {
-                thrown = false;
-            }
-
-
-            if (Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown && /* bulletsInInventory */ grenadeAmmunition >0)
-            {
-                anim.SetTrigger("Grenade");
-                playerMovement.SlowDownModificator = 0.5f;
-                waitForGrenade = 0.0f;
-                startGrenadeTimer = true;
-                waitForGrenade = 0.0f;
-                grenadeTimer = 0;
-
-                Pickaxe.SetActive(false);
-
-            }
-
-            if (startGrenadeTimer)
-            {
-                waitForGrenade += Time.deltaTime;
-            }
-
-            if(waitForGrenade >= 1f)
-            {
-                waitForMusket = 0.0f;
-                ThrowGrenade();
-                startGrenadeTimer = false;
-                Pickaxe.SetActive(true);
-            }
+            
 
             //Nahkampfskript
 
@@ -216,18 +182,7 @@ namespace CompleteProject
 			faceLight.enabled = false;
         }
 
-        void ThrowGrenade()
-        {
-            thrown = true;
-            Rigidbody grenadeInstance = Instantiate(grenade, throwTransform.position, throwTransform.rotation) as Rigidbody;
-
-            grenadeInstance.velocity = throwSpeed * throwTransform.forward;
-            waitForGrenade = 0.0f;
-            grenadeAmmunition--;
-            //AUDIO
-            //inventory.removeItem("grenade");
-            Debug.Log("Granaten: " + grenadeAmmunition);
-        }
+        
 
         void ShootBullet()
         {
@@ -236,9 +191,9 @@ namespace CompleteProject
             gunParticles.Stop();
             gunParticles.Play();
 
-            Rigidbody bulletInstance = Instantiate(bullet, gunBarrelEnd.position, gunBarrelEnd.rotation) as Rigidbody;
+            Rigidbody bulletInstance = Instantiate(bullet, gunBarrelEnd.transform.position, gunBarrelEnd.transform.rotation) as Rigidbody;
 
-            bulletInstance.velocity = 20f * gunBarrelEnd.forward;
+            bulletInstance.velocity = 20f * gunBarrelEnd.transform.forward;
 
             musketAmmunition--;
             //invetory.removeItem("bullet");
@@ -264,23 +219,7 @@ namespace CompleteProject
             }
         }
 
-        public string SpecialWeaponTimer
-        {
-            get
-            {
-               
-                if (grenadeTimer >= 0 && grenadeTimer < timeBetweenGrenades)
-                {
-                    countdownTimerSpecialWeapon -= Time.deltaTime;
-                    return "" + (int)countdownTimerSpecialWeapon;
-                }
-                else
-                {
-                    countdownTimerSpecialWeapon = (int)timeBetweenGrenades;
-                    return "Bereit";
-                }
-            }
-        }
+        
 
         public bool MusketTimer
         {
@@ -299,13 +238,6 @@ namespace CompleteProject
             }
         }
 
-        public int grenadesInInventory
-        {
-            get
-            {
-                //return inventory.grenades
-                return 3;
-            }
-        }
+        
     }
 }

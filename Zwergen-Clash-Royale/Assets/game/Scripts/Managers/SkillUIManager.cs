@@ -22,7 +22,7 @@ public class SkillUIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         _mainWeaponTimerText.text =  _shootingScript.MainWeaponTimer.ToString();
-        _specialWeaponTimerText.text = _shootingScript.SpecialWeaponTimer.ToString();
+//        _specialWeaponTimerText.text = _shootingScript.SpecialWeaponTimer.ToString();
 
     }
 }
