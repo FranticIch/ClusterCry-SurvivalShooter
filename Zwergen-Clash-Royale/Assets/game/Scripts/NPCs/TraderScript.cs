@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TraderScript : MonoBehaviour {
 
+    Animator anim;
+
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -16,6 +18,7 @@ public class TraderScript : MonoBehaviour {
 
     public void Test()
     {
+        anim.SetTrigger("Greeting");
         Debug.Log("Hello there");
         //transform.rotation = playerrotation*
     }
