@@ -6,12 +6,45 @@ using UnityEngine;
 public class CloseCombat : MonoBehaviour {
 
     public int damage = 25;
+    
+
+    bool meleeAllowed;
+    float meleeTimer;
+
+    Animator anim;
+    AudioSource punchAudio;
 
     private List<Rigidbody> enemysInRange = new List<Rigidbody> { };
 
+    private void Awake()
+    {
+        meleeAllowed = true;
+        anim = GetComponentInParent<Animator>();
+        punchAudio = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
-        for(int i = 0; i < enemysInRange.Count; i++)
+        meleeTimer += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.F) && meleeAllowed)
+        {
+            meleeTimer = 0.0f;
+            meleeAllowed = false;
+           // playerMovement.SlowDownModificator = 0.75f;
+            anim.SetTrigger("Attack");
+
+        }
+
+        if (meleeTimer >= 1.0f && !meleeAllowed)
+        {
+            attack();
+            punchAudio.Play();
+            meleeAllowed = true;
+
+        }
+
+        for (int i = 0; i < enemysInRange.Count; i++)
         {
             if (enemysInRange[i].GetComponent<EnemyHealth>().isDead)
             {

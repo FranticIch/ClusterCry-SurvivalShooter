@@ -34,13 +34,11 @@ namespace CompleteProject
         bool startMusketTimer;
         bool hasToLoad;
         bool rotationAllowed;
-        bool meleeAllowed;
-        float meleeTimer;
+
 
         Animator anim;
         PlayerMovement playerMovement;
         ParticleSystem gunParticles;
-        CloseCombat closeCombatScript;
 
 
         public GameObject Musket;
@@ -49,19 +47,19 @@ namespace CompleteProject
         public GameObject Pickaxe;
 
         AudioSource gunAudio;
-        public AudioSource punchAudio;
+
         
         void Awake ()
         {
             rotationAllowed = true;
-            meleeAllowed = true;
+            
 
             Musket.SetActive(false);
             MusketBack.SetActive(true);
             Pickaxe.SetActive(true);
 
             gunParticles = gunBarrelEnd.GetComponent<ParticleSystem> ();
-            closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
+           
             playerMovement = GetComponentInParent<PlayerMovement>();
 
             gunAudio = GetComponent<AudioSource>();
@@ -75,7 +73,7 @@ namespace CompleteProject
         {
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
-            meleeTimer += Time.deltaTime;
+
 
             //grenadeAmmunition = grenadesInInventory;
             //musketAmmunition = bulletsInInventory;
@@ -135,22 +133,7 @@ namespace CompleteProject
             //Nahkampfskript
 
 
-            if (Input.GetKeyDown(KeyCode.F) && meleeAllowed)
-            {
-                meleeTimer = 0.0f;
-                meleeAllowed = false;
-                playerMovement.SlowDownModificator = 0.75f;
-                anim.SetTrigger("Attack");
-
-            }
-
-            if(meleeTimer >= 1.0f && !meleeAllowed)
-            {
-                closeCombatScript.attack();
-                punchAudio.Play();
-                meleeAllowed = true;
-
-            }
+            
 
 
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
