@@ -217,7 +217,7 @@ namespace CompleteProject
             get
             {
                 //return invetory.bullets;
-                return 5;
+                return musketAmmunition;
             }
         }
 
