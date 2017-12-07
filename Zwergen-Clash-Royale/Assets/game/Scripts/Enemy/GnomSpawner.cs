@@ -23,11 +23,19 @@ public class GnomSpawner : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!gnom && gnom.GetComponent<EnemyHealth>().isDead)
+        if(!gnom)
         {
-            isDead = true;
-
+            if (!isDead)
+            {
+                if(gnom.GetComponent<EnemyHealth>().isDead)
+                {
+                    isDead = true;
+                    gnom = null;
+                }
+                
+            }
         }
+        
 
         if(isDead)
         {
@@ -47,9 +55,11 @@ public class GnomSpawner : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             isInRange = true;
-            if (!gnom && !gnom.GetComponent<EnemyHealth>().isDead)
-                gnom.GetComponent<EnemyMovement>().RangeTrigger();
-                
+            if (!gnom)
+            {
+                if (!isDead)
+                    gnom.GetComponent<EnemyMovement>().RangeTrigger();
+            }
         }
     }
 
@@ -58,8 +68,11 @@ public class GnomSpawner : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             isInRange = true;
-            if (!gnom && !gnom.GetComponent<EnemyHealth>().isDead)
-                gnom.GetComponent<EnemyMovement>().RangeTrigger();
+            if(!gnom)
+            {
+                if (!isDead)
+                    gnom.GetComponent<EnemyMovement>().RangeTrigger();
+            }
 
         }
     }
@@ -69,14 +82,18 @@ public class GnomSpawner : MonoBehaviour {
         if (other.CompareTag("Player"))
         {
             isInRange = false;
-            if (!gnom && !gnom.GetComponent<EnemyHealth>().isDead)
-                gnom.GetComponent<EnemyMovement>().NotRangeTrigger();
+            if(!gnom)
+            {
+                if (!isDead)
+                    gnom.GetComponent<EnemyMovement>().NotRangeTrigger();
+            }
 
         }
     }
 
     GameObject Spawn() {
         gnom = Instantiate(enemy, transform.position, transform.rotation);
+        isDead = false;
         return gnom;
     }
 }

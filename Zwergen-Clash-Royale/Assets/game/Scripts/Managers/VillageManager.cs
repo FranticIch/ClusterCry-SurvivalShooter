@@ -10,20 +10,26 @@ public class VillageManager : MonoBehaviour {
     List<GameObject> enemys = new List<GameObject> { };
 
 	void FixedUpdate () {
-        
+        /*
 		for(int i=0; i< spawnPoints.Length; i++)
         {
-            GameObject gnom = spawnPoints[i].GetComponent<GnomSpawner>().gnom;
-            if (!gnom && !gnom.GetComponent<EnemyHealth>().isDead)
+            bool gnomdead = spawnPoints[i].GetComponent<GnomSpawner>().isDead;
+            
+            if(!gnomdead)
             {
-                gnom.gameObject.transform.parent = gameObject.transform;
-                enemys.Add(gnom);
+                GameObject gnom = spawnPoints[i].GetComponent<GnomSpawner>().gnom;
+                if (!gnom.GetComponent<EnemyHealth>().isDead)
+                {
+                    enemys.Add(gnom);
 
-            } else if(gnom.GetComponent<EnemyHealth>().isDead)
-            {
-                enemys.Remove(gnom);
+                }
+                else if (gnom.GetComponent<EnemyHealth>().isDead)
+                {
+                    enemys.Remove(gnom);
+                }
             }
-        } 
+            
+        } */
 
     }
  

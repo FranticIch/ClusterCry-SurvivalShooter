@@ -279,8 +279,10 @@
     <Compile Include="Assets\game\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\GameOverManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\PauseManager.cs" />
-    <Compile Include="Assets\game\Scripts\Managers\ScoreManager.cs" />
-    <Compile Include="Assets\game\Scripts\Managers\SkillUIManager.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\UIManagers\DayNightManagerUI.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\UIManagers\InventoryUI.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\UIManagers\ScoreManager.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\UIManagers\SkillUIManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\VillageManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\WorldManager.cs" />
     <Compile Include="Assets\game\Scripts\NPCs\TraderScript.cs" />
@@ -301,7 +303,6 @@
     <Compile Include="Assets\game\Skyboxes\MobileInput\Scripts\VirtualInput.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\game\Fonts\LuckiestGuy\LICENSE.txt" />
     <None Include="Assets\game\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\game\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
     <None Include="Assets\game\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
