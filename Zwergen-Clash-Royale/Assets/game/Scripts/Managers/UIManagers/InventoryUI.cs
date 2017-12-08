@@ -6,10 +6,13 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour {
     private Text ammo;
+    public GameObject MainWeaponGuiElement;
+    public GameObject SpecialWeaponGUIElement;
+
     public GameObject Player;
 	// Use this for initialization
 	void Start () {
-        ammo = GetComponentInChildren<Text>();
+        ammo = MainWeaponGuiElement.GetComponentInChildren<Text>();
 	}
 	
 	// Update is called once per frame

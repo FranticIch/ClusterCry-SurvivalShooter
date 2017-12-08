@@ -980,6 +980,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d74c79f17825c44ab74e20a32c690b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainWeaponGuiElement: {fileID: 0}
+  SpecialWeaponGUIElement: {fileID: 0}
   Player: {fileID: 0}
 --- !u!114 &114667519877825294
 MonoBehaviour:
