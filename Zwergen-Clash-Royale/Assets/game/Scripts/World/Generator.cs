@@ -5,6 +5,7 @@ using UnityEngine;
 public class Generator : MonoBehaviour {
 
 	public string name;
+	public int chunkSize;
 	public Biome[] biomes; // MISSING DISTRIBUTION /RARITY
 	// public Dictionary<GameObject, float> biomes = new Dictionary<GameObject, float>();
 	
