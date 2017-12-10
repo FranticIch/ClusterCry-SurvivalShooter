@@ -29,7 +29,7 @@ public class WorldManager : MonoBehaviour {
 				GenerateTileAt(x, z);
 			}
 		}
-		navGen.RecalculateMesh(generator.chunkSize/2, new Vector3(generator.chunkSize/2, 0, generator.chunkSize/2));
+		navGen.RecalculateMesh(generator.chunkSize, new Vector3(generator.chunkSize/2, 0, generator.chunkSize/2));
 	}
 	
 	void GenerateTileAt(int x, int z) {

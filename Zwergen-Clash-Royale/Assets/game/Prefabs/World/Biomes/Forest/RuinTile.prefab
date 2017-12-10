@@ -166,6 +166,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4337192641230476}
+  - component: {fileID: 65277063188693818}
   m_Layer: 0
   m_Name: Ruins
   m_TagString: Untagged
@@ -373,7 +374,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4310049986385214}
-  - component: {fileID: 65543142355616238}
   m_Layer: 0
   m_Name: Ruins
   m_TagString: Untagged
@@ -3635,7 +3635,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1243080304271354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.869695, y: 6.232716e-16, z: 4.6992054}
+  m_LocalPosition: {x: 8.468917, y: 8.838505e-16, z: -12.297985}
   m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children:
   - {fileID: 4958460668735600}
@@ -7301,23 +7301,23 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65543142355616238
+--- !u!65 &65277063188693818
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121983215173618}
+  m_GameObject: {fileID: 1036947051568450}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 2, z: 7}
-  m_Center: {x: -0.3, y: 1, z: 0}
+  m_Size: {x: 5, y: 5, z: 7}
+  m_Center: {x: 0.3, y: 2, z: 0}
 --- !u!136 &136072474126608144
 CapsuleCollider:
   m_ObjectHideFlags: 1

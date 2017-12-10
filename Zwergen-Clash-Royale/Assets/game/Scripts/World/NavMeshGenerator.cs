@@ -18,7 +18,7 @@ public class NavMeshGenerator : MonoBehaviour {
 	}
 	
 	void CalculateMesh(int width, Vector3 position){
-		var bounds = new Bounds(transform.position, new Vector3(width*15, 1.0f, width*15));
+		var bounds = new Bounds(position*15, new Vector3(width*15, 0.1f, width*15));
         var markups = new List<NavMeshBuildMarkup>();
         var sources = new List<NavMeshBuildSource>();
         UnityEngine.AI.NavMeshBuilder.CollectSources(bounds, ~0, NavMeshCollectGeometry.PhysicsColliders, 0, markups, sources);
