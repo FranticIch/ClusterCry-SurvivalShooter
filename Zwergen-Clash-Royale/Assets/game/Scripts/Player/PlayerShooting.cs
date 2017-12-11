@@ -4,8 +4,7 @@ using UnitySampleAssets.CrossPlatformInput;
 
 namespace CompleteProject
 {
-    public class PlayerShooting : MonoBehaviour
-    {
+    public class PlayerShooting : MonoBehaviour {
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
 
 
@@ -16,7 +15,6 @@ namespace CompleteProject
         public GameObject gunBarrelEnd;                  
         public Light faceLight;
         public Transform closeCombatDetector;
-        //public Inventory inventory;
 
         float timer;                                    // A timer to determine when to fire.
 
@@ -49,8 +47,7 @@ namespace CompleteProject
         AudioSource gunAudio;
 
         
-        void Awake ()
-        {
+        void Awake () {
             rotationAllowed = true;
             
 
@@ -124,18 +121,6 @@ namespace CompleteProject
                 rotationAllowed = true;
                 waitForMusket = 0.0f;
             }
-
-            //Granatenskript
-            
-
-            
-
-            //Nahkampfskript
-
-
-            
-
-
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
             if (timer >= timeBetweenBullets * effectsDisplayTime)
             {
@@ -160,8 +145,7 @@ namespace CompleteProject
         }
 
 
-        public void DisableEffects ()
-        {
+        public void DisableEffects () {
 			faceLight.enabled = false;
         }
 
