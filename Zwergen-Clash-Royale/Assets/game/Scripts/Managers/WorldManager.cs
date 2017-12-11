@@ -7,11 +7,13 @@ public class WorldManager : MonoBehaviour {
 	public Generator generator;
     public int worldSize;
 	
+	public Transform player;
+	
 	private NavMeshGenerator navGen;
 	
 	private List<GameObject> tiles = new List<GameObject>();
 	
-	private int seed;
+	//private int seed;
 	
 	void Start () {
 		navGen = GetComponent<NavMeshGenerator>();

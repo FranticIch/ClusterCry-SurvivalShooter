@@ -28,6 +28,7 @@ public class Gun : MonoBehaviour {
 	
 	public GameObject bullet;
 	public GameObject gunBarrelEnd; // AAAAAAAAAAAAAAAAAAAAAAA point wäre besser
+	//TODO: Holster verwenden
 	public GameObject gun;
 	public GameObject gunBack; // Auf dem Rücken ( Währe eine Pos nicht besser, als ein 2. Modell? )
 	public GameObject player; // public??

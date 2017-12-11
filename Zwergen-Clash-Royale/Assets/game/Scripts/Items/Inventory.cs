@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
 
-	public int ore;
+	private int ore;
 
 	public GameObject tool;
 	public GameObject gun;
@@ -17,6 +17,22 @@ public class Inventory : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+	
+	public int GetOre() {
+		return ore;
+	}
+	
+	public void AddOre(int cnt) {
+		ore += cnt;
+	}
+	
+	public bool TakeOre(int cnt) {
+		if(ore >= cnt){
+			ore -= cnt;
+			return true;
+		}
+		return false;
 	}
 	
 	public void setGun(GameObject gun) {
