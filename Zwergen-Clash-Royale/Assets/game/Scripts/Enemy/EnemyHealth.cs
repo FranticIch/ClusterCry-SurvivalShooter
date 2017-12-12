@@ -16,6 +16,7 @@ namespace CompleteProject
         AudioSource enemyAudio;                     // Reference to the audio source.
         ParticleSystem hitParticles;                // Reference to the particle system that plays when the enemy is damaged.
         CapsuleCollider capsuleCollider;            // Reference to the capsule collider.
+		EnemySpawner spawner;						// Reference to the EnemySpawner to inform the spawner that the enemy has died
         bool isSinking;                             // Whether the enemy has started sinking through the floor.
         float timerBeforeSinking = 0;
 
@@ -93,7 +94,10 @@ namespace CompleteProject
             enemyAudio.Play ();
 
             StartSinking();
-        }
+				
+			//Tell the Spawner to spawn a new enemy
+			spawner.SetDead();
+		}
 
 
         public void StartSinking ()
@@ -113,5 +117,9 @@ namespace CompleteProject
             // After 2 seconds destory the enemy.
             Destroy (gameObject, 4f);
         }
+		
+		public void SetSpawner(EnemySpawner spawner) {
+			this.spawner = spawner;
+		}
     }
 }

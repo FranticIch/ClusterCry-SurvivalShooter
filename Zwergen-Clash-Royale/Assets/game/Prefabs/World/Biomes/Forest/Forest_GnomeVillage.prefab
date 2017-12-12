@@ -49,7 +49,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4540918676855390}
-  - component: {fileID: 65384186357254196}
   - component: {fileID: 114518440426448564}
   m_Layer: 0
   m_Name: SpawnPoint
@@ -389,7 +388,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4386445073622744}
-  - component: {fileID: 65072232745407778}
   - component: {fileID: 114994042306439128}
   m_Layer: 0
   m_Name: SpawnPoint (1)
@@ -486,7 +484,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4416073970418662}
   - component: {fileID: 114955530676604276}
-  - component: {fileID: 65523696361304940}
   m_Layer: 0
   m_Name: Forest_GnomeVillage
   m_TagString: GoTrough
@@ -1634,7 +1631,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4819595979909510}
-  - component: {fileID: 65670297594833240}
   - component: {fileID: 114431734018584362}
   m_Layer: 0
   m_Name: SpawnPoint (2)
@@ -4435,7 +4431,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1132264296675088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.759026, y: 8.173742e-16, z: 17.226044}
+  m_LocalPosition: {x: 14.339633, y: 3.2193989e-16, z: 29.361115}
   m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children:
   - {fileID: 4200886600114894}
@@ -9670,18 +9666,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65072232745407778
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1112453526801042}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 10, y: 2, z: 10}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &65237102870451694
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -9718,18 +9702,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 5, z: 2}
   m_Center: {x: 0, y: 2, z: 0}
---- !u!65 &65384186357254196
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1005394608998812}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 10, y: 2, z: 10}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &65493798321752912
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -9742,30 +9714,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65523696361304940
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1132264296675088}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2.5, z: 0}
---- !u!65 &65670297594833240
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1570208882105054}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 10, y: 2, z: 10}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!65 &65703694544301210
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -9945,12 +9893,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c89ce492497524286abc2b62f79b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawntime: 30
-  enemy: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c, type: 2}
-  isInRange: 0
-  isDead: 0
-  spawnTimer: 30
-  gnom: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c, type: 2}
+  reSpawnTime: 10
+  enemyPrefab: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c,
+    type: 2}
 --- !u!114 &114518440426448564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9962,12 +9907,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c89ce492497524286abc2b62f79b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawntime: 30
-  enemy: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c, type: 2}
-  isInRange: 0
-  isDead: 0
-  spawnTimer: 30
-  gnom: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c, type: 2}
+  reSpawnTime: 5
+  enemyPrefab: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c,
+    type: 2}
 --- !u!114 &114955530676604276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9994,9 +9936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c89ce492497524286abc2b62f79b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawntime: 30
-  enemy: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c, type: 2}
-  isInRange: 0
-  isDead: 0
-  spawnTimer: 30
-  gnom: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c, type: 2}
+  reSpawnTime: 1
+  enemyPrefab: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c,
+    type: 2}

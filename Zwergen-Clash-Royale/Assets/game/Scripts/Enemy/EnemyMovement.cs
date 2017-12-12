@@ -5,85 +5,61 @@ using System;
 
 namespace CompleteProject
 {
-    public class EnemyMovement : MonoBehaviour
-    {
+    public class EnemyMovement : MonoBehaviour {
+		
         Transform player;               // Reference to the player's position.
+		EnemySpawner spawn;
         PlayerHealth playerHealth;      // Reference to the player's health.
         EnemyHealth enemyHealth;        // Reference to this enemy's health.
-        public UnityEngine.AI.NavMeshAgent nav;          // Reference to the nav mesh agent.
-        Animator anim;
-        public GameObject village;
-        public GameObject spawnPoint;
-        bool playerIsInRange = false;
-        bool atSpawnPoint = true;
+		
+		public int followRadius = 10;
+		
+		private EnemySpawner spawner;
+		
+        private UnityEngine.AI.NavMeshAgent nav;          // Reference to the nav mesh agent.
+        
+		private Animator anim;
+		private Rigidbody body;
+		
         bool walking = false;
         public LayerMask spawnPoints;
-        [Tooltip("Distance from Enemy to Spawnpoint to change Animation")]
-        public float preferedDistanceToSpawnpoint = 1f;
 
-
-        void Awake()
-        {
-            // Set up the references.
+        void Awake() {
             player = GameObject.FindGameObjectWithTag("Player").transform;
+			body = GetComponent<Rigidbody>();
             playerHealth = player.GetComponent<PlayerHealth>();
             enemyHealth = GetComponent<EnemyHealth>();
             nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
             anim = GetComponent<Animator>();
+			
+			nav.enabled = true;
         }
 
-        private void Start()
-        {
-            nav.enabled = false;
+        private void Start() {
         }
 
-        private void Update()
-        {
+        private void Update() {
+			
+        }
+
+        void FixedUpdate() {
             
-        }
-
-        void FixedUpdate()
-        {
-            // Animate the enemy.
+			// if(Vector3.Distance(transform.position, player.position) > followRadius){
+				// nav.SetDestination(spawner.transform.position);
+			// }
+			// else{
+				nav.SetDestination(player.position);
+			// }
+			
             UpdateAnimator();
-            IsWalking();
-            if (!walking)
-                nav.enabled = false;
-            
         }
 
-        bool IsNearSpawnpoint()
-        {
-            return Vector3.Distance(transform.position, spawnPoint.transform.position) < preferedDistanceToSpawnpoint;
-        }
-
-        void IsWalking()
-        {
-            walking = playerIsInRange || !IsNearSpawnpoint();
-                
-        }
-
-        void UpdateAnimator()
-        {
-            // Tell the animator whether or not the player is in Range so the enemy will follow him.
-            anim.SetBool("IsWalking", walking);
-        }
-
-        public void RangeTrigger()
-        {
-            nav.enabled = true;
-            nav.SetDestination(player.position);
-            playerIsInRange = true;
-        }
-
-        public void NotRangeTrigger()
-        {
-            nav.enabled = true;
-            nav.SetDestination(spawnPoint.transform.position);
-            playerIsInRange = false;
-        }
-
-
-
-    }    
+        void UpdateAnimator() {
+           anim.SetBool("IsWalking", body.velocity.magnitude > 0);
+		}
+		
+		public void SetSpawner(EnemySpawner spawner){
+			this.spawner = spawner;
+		}
+    }
 }

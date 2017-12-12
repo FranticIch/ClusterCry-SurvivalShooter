@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4110852539941748}
-  - component: {fileID: 135220350520420248}
   m_Layer: 13
   m_Name: SpawnPoint
   m_TagString: GoTrough
@@ -40,15 +39,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &135220350520420248
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1307167324029710}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
