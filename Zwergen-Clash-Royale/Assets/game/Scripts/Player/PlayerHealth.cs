@@ -63,10 +63,11 @@ namespace CompleteProject
 
             
             
-            if (Input.GetKeyDown(KeyCode.H) &&  healthpotions>=1 && currentHealth<100)
+            if (Input.GetKeyDown(KeyCode.H) &&  currentHealth<100)
             {
-                takeHealthPotion();
-                Debug.Log("Health: " + currentHealth);
+                if(FindObjectOfType<Inventory>().TakePotion())
+                    HealPlayer();
+                
             }
             
         }
@@ -101,12 +102,10 @@ namespace CompleteProject
             }
         }
 
-        void takeHealthPotion()
+        void HealPlayer()
         {
-            //inventory.removeItem("healthpotion");
-            healthpotions--;
-            int neededHealthToFull = startingHealth - currentHealth;
-            currentHealth += neededHealthToFull;
+            currentHealth = startingHealth;
+            healthSlider.value = currentHealth;
         }
 
 
