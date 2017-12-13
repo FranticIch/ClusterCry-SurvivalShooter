@@ -54,14 +54,10 @@ namespace CompleteProject
                     nav.SetDestination(player.position);
                 }
             } 
-
-
-
             UpdateAnimator();
         }
 
         void UpdateAnimator() {
-            Debug.Log(body.velocity.magnitude);
            anim.SetBool("IsWalking", nav.remainingDistance>0.1f);
 		}
 		
