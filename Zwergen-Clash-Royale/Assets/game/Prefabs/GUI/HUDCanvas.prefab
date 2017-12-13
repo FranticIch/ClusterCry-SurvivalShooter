@@ -982,6 +982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainWeaponGuiElement: {fileID: 0}
   SpecialWeaponGUIElement: {fileID: 0}
+  CoinGuiElement: {fileID: 0}
+  PotionGuiElement: {fileID: 0}
   Player: {fileID: 0}
 --- !u!114 &114667519877825294
 MonoBehaviour:
