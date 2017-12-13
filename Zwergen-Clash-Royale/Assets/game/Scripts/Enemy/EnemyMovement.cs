@@ -62,7 +62,7 @@ namespace CompleteProject
 
         void UpdateAnimator() {
             Debug.Log(body.velocity.magnitude);
-           anim.SetBool("IsWalking", ((int)body.velocity.magnitude) > 0);
+           anim.SetBool("IsWalking", nav.remainingDistance>0.1f);
 		}
 		
 		public void SetSpawner(EnemySpawner spawner){
