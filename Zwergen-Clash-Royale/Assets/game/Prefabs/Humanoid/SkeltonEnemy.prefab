@@ -59,9 +59,9 @@ GameObject:
   - component: {fileID: 114095951895955276}
   - component: {fileID: 114872334177326020}
   - component: {fileID: 114896386907185584}
-  - component: {fileID: 82663977405477580}
   - component: {fileID: 114292743907042330}
   - component: {fileID: 195426419957306772}
+  - component: {fileID: 82636212126409578}
   m_Layer: 9
   m_Name: SkeltonEnemy
   m_TagString: Enemy
@@ -93,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521517298462526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.4502499, y: 5.2841833e-16, z: 3.3210144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4600190396824370}
@@ -156,7 +156,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!82 &82663977405477580
+--- !u!82 &82636212126409578
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -164,10 +164,9 @@ AudioSource:
   m_GameObject: {fileID: 1521517298462526}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 8434b04884c414ac6b468e10945685e6,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -176,7 +175,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.7979033
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -246,7 +245,7 @@ Animator:
   m_GameObject: {fileID: 1521517298462526}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c25075f34da0a6e4e9af04b1814935af, type: 3}
-  m_Controller: {fileID: 9100000, guid: 30bdf60d04281da4ebce6a597e7c198d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 391b7a5e8820f564b9e97c1be0ca071f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -289,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa10cc87aff30c04dbe0aa648f5b6adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startingHealth: 200
   currentHealth: 0
   sinkSpeed: 0.5
   scoreValue: 10
@@ -400,7 +399,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0.4
+  m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &198339074222173070

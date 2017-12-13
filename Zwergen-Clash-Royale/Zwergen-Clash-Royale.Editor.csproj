@@ -260,22 +260,22 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>C:/Users/hartm/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@0.0.18/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>C:/Users/Leon Hartmann/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@0.0.18/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>C:/Users/hartm/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@0.0.18/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>C:/Users/Leon Hartmann/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@0.0.18/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Users/hartm/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@0.0.19/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>C:/Users/Leon Hartmann/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@0.0.19/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Analytics">
-      <HintPath>C:/Users/hartm/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@0.0.19/Editor/UnityEditor.Analytics.dll</HintPath>
+      <HintPath>C:/Users/Leon Hartmann/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@0.0.19/Editor/UnityEditor.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
-      <HintPath>C:/Users/hartm/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/UnityEngine.Purchasing.dll</HintPath>
+      <HintPath>C:/Users/Leon Hartmann/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>C:/Users/hartm/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>C:/Users/Leon Hartmann/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@0.0.19/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
