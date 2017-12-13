@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{94DD805A-FFFB-0593-5A1E-19EC022277D0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp.dll</AssemblyName>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -281,14 +281,12 @@
     <Compile Include="Assets\game\Scripts\Items\ThrowGrenade.cs" />
     <Compile Include="Assets\game\Scripts\Items\Tool.cs" />
     <Compile Include="Assets\game\Scripts\Managers\DayNightManager.cs" />
-    <Compile Include="Assets\game\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\GameOverManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\PauseManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\UIManagers\DayNightManagerUI.cs" />
     <Compile Include="Assets\game\Scripts\Managers\UIManagers\InventoryUI.cs" />
     <Compile Include="Assets\game\Scripts\Managers\UIManagers\ScoreManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\UIManagers\SkillUIManager.cs" />
-    <Compile Include="Assets\game\Scripts\Managers\VillageManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\WorldManager.cs" />
     <Compile Include="Assets\game\Scripts\NPCs\SimpleNav.cs" />
     <Compile Include="Assets\game\Scripts\NPCs\TraderScript.cs" />
