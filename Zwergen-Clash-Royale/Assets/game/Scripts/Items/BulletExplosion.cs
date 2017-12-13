@@ -25,7 +25,7 @@ public class BulletExplosion : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.gameObject.CompareTag("Player"))
+        if(!other.gameObject.CompareTag("GoTrough") && !other.gameObject.CompareTag("Player"))
         {
             Rigidbody targetRigidbody = other.GetComponent<Rigidbody>();
 

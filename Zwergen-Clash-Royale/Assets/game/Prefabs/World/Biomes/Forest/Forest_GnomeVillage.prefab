@@ -483,7 +483,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4416073970418662}
-  - component: {fileID: 114955530676604276}
   m_Layer: 0
   m_Name: Forest_GnomeVillage
   m_TagString: GoTrough
@@ -9907,24 +9906,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c89ce492497524286abc2b62f79b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reSpawnTime: 5
+  reSpawnTime: 10
   enemyPrefab: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c,
     type: 2}
---- !u!114 &114955530676604276
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1132264296675088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17b115a221f4474ab07256149a7349c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 4540918676855390}
-  - {fileID: 4386445073622744}
-  - {fileID: 4819595979909510}
 --- !u!114 &114994042306439128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9936,6 +9920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c89ce492497524286abc2b62f79b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reSpawnTime: 1
+  reSpawnTime: 10
   enemyPrefab: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c,
     type: 2}
