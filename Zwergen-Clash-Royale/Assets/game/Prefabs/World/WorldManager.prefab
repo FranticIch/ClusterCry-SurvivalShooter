@@ -65,4 +65,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generator: {fileID: 114924345973577160, guid: 204e1ea85e7777e46b938f0bd1a7a3a5,
     type: 2}
-  worldSize: 0
+  worldSize: 10
+  player: {fileID: 0}

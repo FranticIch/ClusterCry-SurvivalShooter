@@ -101,7 +101,7 @@ public class Grenade : MonoBehaviour {
         get
         {
             //return inventory.grenades
-            return 3;
+            return ammunition;
         }
     }
 }

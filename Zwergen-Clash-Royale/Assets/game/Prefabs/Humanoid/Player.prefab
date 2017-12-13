@@ -24,6 +24,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400006}
+  - component: {fileID: 114632910321705588}
   - component: {fileID: 9500000}
   - component: {fileID: 11400004}
   - component: {fileID: 5400000}
@@ -311,8 +312,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4523255572958382}
-  - component: {fileID: 114529116104008076}
   - component: {fileID: 65767031880486776}
+  - component: {fileID: 114529116104008076}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: GoTrough
@@ -1073,6 +1074,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traderInRange: 0
+--- !u!114 &114632910321705588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77339d2a7ddb11e4e8e595fc695bb8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114668845941651222
 MonoBehaviour:
   m_ObjectHideFlags: 1

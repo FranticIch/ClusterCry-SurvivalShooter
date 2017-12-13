@@ -50,6 +50,6 @@ public class PlayerTrading : MonoBehaviour {
         //traden
         //gui.trade();
         Debug.Log("Start Trading");
-        trader.GetComponent<TraderScript>().Test();
+        trader.GetComponent<TraderScript>().Trading();
     }
 }

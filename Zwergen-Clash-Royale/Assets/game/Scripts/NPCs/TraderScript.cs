@@ -16,7 +16,7 @@ public class TraderScript : MonoBehaviour {
 		
 	}
 
-    public void Test()
+    public void Trading()
     {
         anim.SetTrigger("Greeting");
         Debug.Log("Hello there");
