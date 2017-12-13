@@ -7,8 +7,8 @@ public class Biome : MonoBehaviour {
 	public string name;
 	
 	
-	public GameObject borderPrefab;
-	public GameObject borderCornerPrefab;
+	public GameObject borderTilePrefab;
+	public GameObject borderCornerTilePrefab;
 	
 	public GameObject exitTilePrefab;
 	public GameObject spawnTilePrefab;
