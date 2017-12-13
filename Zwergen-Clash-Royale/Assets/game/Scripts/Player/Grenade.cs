@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -63,6 +64,11 @@ public class Grenade : MonoBehaviour {
             startGrenadeTimer = false;
             //Pickaxe.SetActive(true);
         }
+    }
+
+    internal void AddGrenade()
+    {
+        ammunition++;
     }
 
     void ThrowGrenade()

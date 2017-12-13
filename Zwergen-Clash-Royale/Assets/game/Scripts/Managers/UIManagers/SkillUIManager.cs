@@ -11,9 +11,11 @@ public class SkillUIManager : MonoBehaviour {
     private Text _mainWeaponTimerText;
     private Text _specialWeaponTimerText;
     private PlayerShooting _shootingScript;
+    private Grenade _grenadeScript;
 
     // Use this for initialization
     void Start () {
+        _grenadeScript = FindObjectOfType<Grenade>();
         _shootingScript = FindObjectOfType<PlayerShooting>();
         _mainWeaponTimerText = mainWeapon.GetComponentInChildren<Text>();
         _specialWeaponTimerText = specialWeapon.GetComponentInChildren<Text>();
@@ -22,7 +24,7 @@ public class SkillUIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         _mainWeaponTimerText.text =  _shootingScript.MainWeaponTimer.ToString();
-//        _specialWeaponTimerText.text = _shootingScript.SpecialWeaponTimer.ToString();
+        _specialWeaponTimerText.text = _grenadeScript.SpecialWeaponTimer.ToString();
 
     }
 }

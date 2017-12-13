@@ -24,13 +24,15 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400006}
-  - component: {fileID: 114632910321705588}
   - component: {fileID: 9500000}
   - component: {fileID: 11400004}
   - component: {fileID: 5400000}
   - component: {fileID: 11400002}
   - component: {fileID: 13600000}
   - component: {fileID: 8200002}
+  - component: {fileID: 114201780584414978}
+  - component: {fileID: 114988465590537962}
+  - component: {fileID: 65149535195489910}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -68,7 +70,6 @@ Transform:
   - {fileID: 4571335910284426}
   - {fileID: 4844845354485490}
   - {fileID: 4036862332929224}
-  - {fileID: 4523255572958382}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -300,23 +301,6 @@ GameObject:
   m_Layer: 0
   m_Name: GunBarrelEnd
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1078391000586272
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4523255572958382}
-  - component: {fileID: 65767031880486776}
-  - component: {fileID: 114529116104008076}
-  m_Layer: 0
-  m_Name: Inventory
-  m_TagString: GoTrough
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -569,19 +553,6 @@ Transform:
   m_Father: {fileID: 4700901554379902}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4523255572958382
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078391000586272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400006}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4531781016623676
 Transform:
   m_ObjectHideFlags: 1
@@ -828,6 +799,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593647148050778}
   m_Mesh: {fileID: 4300000, guid: b4d059bdee3de61448c1c87433e7e7c5, type: 3}
+--- !u!65 &65149535195489910
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 1}
 --- !u!65 &65275031546019544
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -852,18 +835,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0.75, z: 0.5}
---- !u!65 &65767031880486776
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078391000586272}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 1, z: 1}
 --- !u!82 &82236486739632356
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1062,19 +1033,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114529116104008076
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078391000586272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a6ef1fcc390c46a72ef37fdf1e839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traderInRange: 0
---- !u!114 &114632910321705588
+--- !u!114 &114201780584414978
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1082,9 +1041,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77339d2a7ddb11e4e8e595fc695bb8c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 744a6ef1fcc390c46a72ef37fdf1e839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  traderInRange: 0
+  tradingMenu: {fileID: 0}
 --- !u!114 &114668845941651222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1129,9 +1090,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad7ca78dfa2d57449675ebadf0c097d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenGrenades: 2
+  timeBetweenGrenades: 5
   throwSpeed: 5
   grenade: {fileID: 54959006548583114, guid: dbd47db1a215b764bab1f4591f7d7d6b, type: 2}
+--- !u!114 &114988465590537962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77339d2a7ddb11e4e8e595fc695bb8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &120429346436348488
 LineRenderer:
   m_ObjectHideFlags: 1

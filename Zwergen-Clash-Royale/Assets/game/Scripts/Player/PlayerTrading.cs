@@ -9,6 +9,8 @@ public class PlayerTrading : MonoBehaviour {
     GameObject trader;
     GameObject player;
 
+    public GameObject tradingMenu;
+
 	// Use this for initialization
 	void Start () {
         //inventory = GetComponentInChildren<Inventory>();
@@ -17,7 +19,7 @@ public class PlayerTrading : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(traderInRange && Input.GetKeyDown(KeyCode.E))
+        if(traderInRange && Input.GetKeyDown(KeyCode.T))
         {
             StartTraiding();
         }
@@ -46,10 +48,17 @@ public class PlayerTrading : MonoBehaviour {
 
     void StartTraiding()
     {
-        //GUI aufrufen
-        //traden
-        //gui.trade();
+        Time.timeScale = 0;
+        tradingMenu.GetComponent<Canvas>().enabled = true;
         Debug.Log("Start Trading");
         trader.GetComponent<TraderScript>().Trading();
     }
+
+    public void EndTrading()
+    {
+        Time.timeScale = 1;
+        tradingMenu.GetComponent<Canvas>().enabled = false;
+    }
+
+
 }

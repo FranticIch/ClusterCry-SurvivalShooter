@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour
     {
         if (Coins >= 1)
         {
-            //Munition
+            FindObjectOfType<PlayerShooting>().AddAmmunition();
             Coins--;
         }
     }
@@ -68,7 +68,7 @@ public class Inventory : MonoBehaviour
     {
         if (Coins >= 5)
         {
-            //Granaten weg
+            FindObjectOfType<Grenade>().AddGrenade();
             Coins -= 5;
         }
     }

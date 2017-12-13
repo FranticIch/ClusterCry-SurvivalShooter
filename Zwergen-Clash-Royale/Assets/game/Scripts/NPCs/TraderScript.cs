@@ -22,4 +22,5 @@ public class TraderScript : MonoBehaviour {
         Debug.Log("Hello there");
         //transform.rotation = playerrotation*
     }
+
 }

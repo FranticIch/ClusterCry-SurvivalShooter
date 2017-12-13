@@ -25,6 +25,6 @@ public class InventoryUI : MonoBehaviour {
 	void Update () {
         coins.text = "" + Player.GetComponentInChildren<Inventory>().Coins;
         grenades.text = "" + Player.GetComponentInChildren<Grenade>().grenadesInInventory;
-        ammo.text = ""+  Player.GetComponentInChildren<PlayerShooting>().bulletsInInventory;
+        ammo.text = ""+  Player.GetComponentInChildren<PlayerShooting>().BulletsInInventory;
 	}
 }

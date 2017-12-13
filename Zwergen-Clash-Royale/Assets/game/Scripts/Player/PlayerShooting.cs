@@ -196,13 +196,18 @@ namespace CompleteProject
             }
         }
 
-        public int bulletsInInventory
+        public int BulletsInInventory
         {
             get
             {
                 //return invetory.bullets;
                 return musketAmmunition;
             }
+        }
+
+        public void AddAmmunition()
+        {
+            musketAmmunition++;
         }
 
         
