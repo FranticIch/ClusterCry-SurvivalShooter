@@ -6,7 +6,14 @@ public class Biome : MonoBehaviour {
 	
 	public string name;
 	
-	public GameObject[] tilePrefabs;
+	
+	public GameObject borderPrefab;
+	public GameObject borderCornerPrefab;
+	
+	public GameObject exitTilePrefab;
+	public GameObject spawnTilePrefab;
+	
+	public GameObject[] tilePrefabs; 
 	
 	// Use this for initialization
 	void Start () {
