@@ -268,13 +268,18 @@
     <Compile Include="Assets\game\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\game\Scripts\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\game\Scripts\Enemy\EnemyMovement.cs" />
-    <Compile Include="Assets\game\Scripts\Enemy\GnomSpawner.cs" />
+    <Compile Include="Assets\game\Scripts\Enemy\EnemySpawner.cs" />
     <Compile Include="Assets\game\Scripts\Enemy\goblinLaugh.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\RandomAnimationPoint.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\RandomParticlePoint.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\VolumeHandler.cs" />
     <Compile Include="Assets\game\Scripts\Items\BulletExplosion.cs" />
+    <Compile Include="Assets\game\Scripts\Items\Gun.cs" />
+    <Compile Include="Assets\game\Scripts\Items\Holster.cs" />
+    <Compile Include="Assets\game\Scripts\Items\Inventory.cs" />
+    <Compile Include="Assets\game\Scripts\Items\Mineable.cs" />
     <Compile Include="Assets\game\Scripts\Items\ThrowGrenade.cs" />
+    <Compile Include="Assets\game\Scripts\Items\Tool.cs" />
     <Compile Include="Assets\game\Scripts\Managers\DayNightManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\GameOverManager.cs" />
@@ -285,6 +290,7 @@
     <Compile Include="Assets\game\Scripts\Managers\UIManagers\SkillUIManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\VillageManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\WorldManager.cs" />
+    <Compile Include="Assets\game\Scripts\NPCs\SimpleNav.cs" />
     <Compile Include="Assets\game\Scripts\NPCs\TraderScript.cs" />
     <Compile Include="Assets\game\Scripts\Player\CloseCombat.cs" />
     <Compile Include="Assets\game\Scripts\Player\Grenade.cs" />
@@ -294,6 +300,7 @@
     <Compile Include="Assets\game\Scripts\Player\PlayerTrading.cs" />
     <Compile Include="Assets\game\Scripts\World\Biome.cs" />
     <Compile Include="Assets\game\Scripts\World\Generator.cs" />
+    <Compile Include="Assets\game\Scripts\World\NavMeshGenerator.cs" />
     <Compile Include="Assets\game\Scripts\World\Tile.cs" />
     <Compile Include="Assets\game\Skyboxes\MobileInput\Scripts\CrossPlatformInputManager.cs" />
     <Compile Include="Assets\game\Skyboxes\MobileInput\Scripts\Joystick.cs" />

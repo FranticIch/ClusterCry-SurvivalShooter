@@ -52,6 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Overworld
-  chunkSize: 3
+  chunkSize: 0
   biomes:
   - {fileID: 114679990328868172, guid: d030d042bb097ec46b353b476929316e, type: 2}

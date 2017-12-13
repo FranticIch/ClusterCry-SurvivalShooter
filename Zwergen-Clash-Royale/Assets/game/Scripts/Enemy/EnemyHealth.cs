@@ -9,8 +9,9 @@ namespace CompleteProject
         public float sinkSpeed = 2.5f;              // The speed at which the enemy sinks through the floor when dead.
         public int scoreValue = 10;                 // The amount added to the player's score when the enemy dies.
         public AudioClip deathClip;                 // The sound to play when the enemy dies.
+        public AudioClip hitClip;
         public bool isDead;                         // Whether the enemy is dead.
-
+        
 
         Animator anim;                              // Reference to the animator.
         AudioSource enemyAudio;                     // Reference to the audio source.
@@ -58,7 +59,7 @@ namespace CompleteProject
             anim.SetTrigger("getHit");
 
             // Play the hurt sound effect.
-            enemyAudio.Play ();
+            enemyAudio.PlayOneShot(hitClip);
 
             // Reduce the current health by the amount of damage sustained.
             currentHealth -= amount;
@@ -90,8 +91,7 @@ namespace CompleteProject
             anim.SetTrigger ("Dead");
 
             // Change the audio clip of the audio source to the death clip and play it (this will stop the hurt clip playing).
-            enemyAudio.clip = deathClip;
-            enemyAudio.Play ();
+            enemyAudio.PlayOneShot(deathClip);
 
             StartSinking();
 				

@@ -43,19 +43,26 @@ namespace CompleteProject
         }
 
         void FixedUpdate() {
-            
-			// if(Vector3.Distance(transform.position, player.position) > followRadius){
-				// nav.SetDestination(spawner.transform.position);
-			// }
-			// else{
-				nav.SetDestination(player.position);
-			// }
-			
+            if (nav.enabled)
+            {
+                if (Vector3.Distance(transform.position, player.position) > followRadius)
+                {
+                    nav.SetDestination(spawner.transform.position);
+                }
+                else
+                {
+                    nav.SetDestination(player.position);
+                }
+            } 
+
+
+
             UpdateAnimator();
         }
 
         void UpdateAnimator() {
-           anim.SetBool("IsWalking", body.velocity.magnitude > 0);
+            Debug.Log(body.velocity.magnitude);
+           anim.SetBool("IsWalking", ((int)body.velocity.magnitude) > 0);
 		}
 		
 		public void SetSpawner(EnemySpawner spawner){
