@@ -8,6 +8,8 @@ TagManager:
   - GoTrough
   - Trader
   - Container
+  - PlayerSpawn
+  - ExitPoint
   layers:
   - Default
   - TransparentFX
