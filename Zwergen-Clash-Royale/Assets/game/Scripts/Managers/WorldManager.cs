@@ -24,26 +24,24 @@ public class WorldManager : MonoBehaviour {
 		
 	}
 	
-	void ResetMap() {
+	public void ResetMap() {
+		DestroyTiles();
 		//Add Offset
+		Debug.Log("RESET MAP");
 		tiles = generator.GenerateChunkAt(0, 0, seed, transform);
-		GameObject spawn = GameObject.FindWithTag("PlayerSpawn");
-		
-		if(spawn == null){
-			Debug.Log("Could not find PlayerSpawn");
-		}
-		else{
-			player.position = GameObject.FindWithTag("PlayerSpawn").transform.position;
-			player.position = new Vector3(player.position.x, 0, player.position.z);
-		}
 		
 		navGen.RecalculateMesh(generator.chunkSize, new Vector3(generator.chunkSize/2, 0, generator.chunkSize/2));
 	}
 	
 	void DestroyTiles() {
-		foreach(GameObject tile in tiles) {
-			Destroy(tile);
+		// foreach(GameObject tile in tiles) {
+			// tiles.Remove(tile);
+			// Destroy(tile);
+		// }
+		while(tiles.Count > 0){
+			GameObject tile = tiles[0];
 			tiles.Remove(tile);
+			Destroy(tile);
 		}
 	}
 }
