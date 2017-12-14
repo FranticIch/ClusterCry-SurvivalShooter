@@ -1269,12 +1269,12 @@ Prefab:
     - target: {fileID: 224425078514209250, guid: ee42fad1dd5b9f84681478002e6d1579,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 67.2
+      value: 12.199997
       objectReference: {fileID: 0}
     - target: {fileID: 224425078514209250, guid: ee42fad1dd5b9f84681478002e6d1579,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -9.3
+      value: -14.3
       objectReference: {fileID: 0}
     - target: {fileID: 224040131846555330, guid: ee42fad1dd5b9f84681478002e6d1579,
         type: 2}
@@ -1922,7 +1922,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1984706997}
-        m_MethodName: AddPotion
+        m_MethodName: AddPotionsWithMoney
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2257,7 +2257,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1984706997}
-        m_MethodName: AddAmmunition
+        m_MethodName: AddAmmunitionWithMoney
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3475,7 +3475,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1984706997}
-        m_MethodName: AddGrenades
+        m_MethodName: AddGrenadesWithMoney
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

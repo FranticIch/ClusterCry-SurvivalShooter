@@ -58,7 +58,8 @@ namespace CompleteProject
         }
 
         void UpdateAnimator() {
-           anim.SetBool("IsWalking", nav.remainingDistance>0.1f);
+            if(nav.enabled)
+                anim.SetBool("IsWalking", nav.remainingDistance>0.1f);
 		}
 		
 		public void SetSpawner(EnemySpawner spawner){

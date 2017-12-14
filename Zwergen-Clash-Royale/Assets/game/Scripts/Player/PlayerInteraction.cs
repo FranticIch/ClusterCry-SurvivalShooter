@@ -18,10 +18,6 @@ public class PlayerInteraction : MonoBehaviour {
 	}
 
 	private void Update () {
-        if(traderInRange && Input.GetKeyDown(KeyCode.T)) {
-            StartTraiding();
-        }
-
         if(containerInRange && Input.GetKeyDown(KeyCode.E)) {
             StartInteract();
         }
@@ -29,12 +25,8 @@ public class PlayerInteraction : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Trader")) {
-            traderInRange = true;
-            trader = other.gameObject;
-        }
 
-        if(other.CompareTag("Container")) {
+        if(other.CompareTag("Container") || other.CompareTag("Trader")) {
             containerInRange = true;
             container = other.gameObject;
         }
@@ -46,7 +38,7 @@ public class PlayerInteraction : MonoBehaviour {
         if (other.CompareTag("Trader"))
         {
             traderInRange = false;
-            trader = null;
+            container = null;
         }
 
         if(other.CompareTag("Container")) {
@@ -61,10 +53,12 @@ public class PlayerInteraction : MonoBehaviour {
         Time.timeScale = 0;
         tradingMenu.GetComponent<Canvas>().enabled = true;
         Debug.Log("Start Trading");
-        trader.GetComponent<TraderScript>().Trading();
+        container.GetComponent<TraderScript>().Trading();
     }
 
     void StartInteract() {
+        if (!container)
+            return;
 
         if(container.name == "LootChest") {
             int[] loot = container.GetComponent<Container>().Loot();
@@ -79,6 +73,10 @@ public class PlayerInteraction : MonoBehaviour {
             inventory.AddPotions(loot[1]);
             inventory.AddGrenades(loot[2]);
             inventory.AddAmmunition(loot[3]);
+
+        } else if (container.name == "HumanTrader") {
+
+            StartTraiding();
         }
         
     }

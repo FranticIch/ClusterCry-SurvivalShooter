@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Container : MonoBehaviour {
 
-    public float sinkSpeed;
-
     private int _coins;
     private int _potions;
     private int _grenades;
