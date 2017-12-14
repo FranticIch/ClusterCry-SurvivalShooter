@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour {
 			return;
 		
         GameObject enemy = Instantiate(enemyPrefab, transform.position, transform.rotation) as GameObject;
+		enemy.transform.parent = transform;
         enemy.GetComponent<EnemyMovement>().SetSpawner(this);
 		enemy.GetComponent<EnemyHealth>().SetSpawner(this);
 		alive = true;
