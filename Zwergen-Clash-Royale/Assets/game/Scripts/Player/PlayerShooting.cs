@@ -160,7 +160,7 @@ namespace CompleteProject
 
             Rigidbody bulletInstance = Instantiate(bullet, gunBarrelEnd.transform.position, gunBarrelEnd.transform.rotation) as Rigidbody;
 
-            bulletInstance.velocity = 20f * gunBarrelEnd.transform.forward;
+            bulletInstance.velocity = 35f * gunBarrelEnd.transform.forward;
 
             musketAmmunition--;
             //invetory.removeItem("bullet");
