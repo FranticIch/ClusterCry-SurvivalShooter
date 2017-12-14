@@ -7,27 +7,27 @@ TagManager:
   - Enemy
   - GoTrough
   - Trader
-<<<<<<< HEAD
   - Container
-=======
   - PlayerSpawn
   - ExitPoint
->>>>>>> MapProgression
   layers:
   - Default
   - TransparentFX
-  - Ignore Raycast
-  - 
-  - Water
   - UI
-  - 
-  - 
+  - Ignore Raycast
+  - Water
   - Floor
   - Shootable
   - LightMask
   - Invisible
   - Player
   - Spawnpoint
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
