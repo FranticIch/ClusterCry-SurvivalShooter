@@ -8327,7 +8327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c89ce492497524286abc2b62f79b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reSpawnTime: 30
+  reSpawnTime: 5
   enemyPrefab: {fileID: 1521517298462526, guid: b0112fde1ea7bc246a99e6c98e057be5,
     type: 2}
   NightSpawner: 1
