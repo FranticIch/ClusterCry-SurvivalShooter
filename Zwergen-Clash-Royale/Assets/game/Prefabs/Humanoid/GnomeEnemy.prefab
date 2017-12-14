@@ -73,8 +73,8 @@ GameObject:
   - component: {fileID: 4452297693835230}
   - component: {fileID: 95760758223280532}
   - component: {fileID: 54589042555630896}
-  - component: {fileID: 136058957559020314}
   - component: {fileID: 135654539847476766}
+  - component: {fileID: 136058957559020314}
   - component: {fileID: 114487666294269366}
   - component: {fileID: 114274964522233566}
   - component: {fileID: 114411555800939530}
@@ -558,7 +558,11 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
+<<<<<<< HEAD
   randomSeed: 1379756834
+=======
+  randomSeed: -1177584953
+>>>>>>> MapProgression
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3920,7 +3924,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1664076506
+  randomSeed: -688623375
   InitialModule:
     serializedVersion: 3
     enabled: 1
