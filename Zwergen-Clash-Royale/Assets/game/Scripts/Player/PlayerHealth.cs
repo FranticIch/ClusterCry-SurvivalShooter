@@ -24,7 +24,6 @@ namespace CompleteProject
         bool isDead;                                                // Whether the player is dead.
         bool damaged;                                               // True when the player gets damaged.
         //Inventory inventory;
-        int healthpotions;
 
 
 
@@ -39,7 +38,6 @@ namespace CompleteProject
 
             // Set the initial health of the player.
             currentHealth = startingHealth;
-            setHealthpotions();
         }
 
 
@@ -136,10 +134,5 @@ namespace CompleteProject
             SceneManager.LoadScene (0);
         }
 
-        private void setHealthpotions()
-        {
-            //healthpotions = inventory.getQuantityOfItem("healthpotion");
-            healthpotions = 1;
-        }
     }
 }

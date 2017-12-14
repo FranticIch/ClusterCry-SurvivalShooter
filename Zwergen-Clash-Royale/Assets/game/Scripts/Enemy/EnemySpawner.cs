@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour {
 
     public float reSpawnTime = 30;
     public GameObject enemyPrefab;
+    public bool NightSpawner;
 	
     private float deathTime;
 	private bool alive = false;
@@ -22,6 +23,12 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
     void Spawn() {
+        if (NightSpawner)
+        {
+            if (!FindObjectOfType<DayNightManager>().isNight)
+                return;
+        }
+
 		if(reSpawnTime <= 0 || alive)
 			return;
 		
