@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - GoTrough
+  - Trader
+  - Container
   layers:
   - Default
   - TransparentFX

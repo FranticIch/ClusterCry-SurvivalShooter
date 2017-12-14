@@ -5,7 +5,7 @@ using CompleteProject;
 
 public class Inventory : MonoBehaviour
 {
-    private int _coins = 20;
+    private int _coins = 0;
     private int _potions;
 
     public int Coins
@@ -45,7 +45,11 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void AddPotion()
+    public void AddCoins(int coins) {
+        _coins += coins;
+    }
+
+    public void AddPotionsWithMoney()
     {
         if (Coins >= 10)
         {
@@ -55,7 +59,11 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void AddAmmunition()
+    public void AddPotions(int potions) {
+        _potions += potions;
+    }
+
+    public void AddAmmunitionWithMoney()
     {
         if (Coins >= 1)
         {
@@ -64,12 +72,29 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddGrenades()
+    public void AddAmmunition(int bullets) {
+
+        PlayerShooting ps = FindObjectOfType<PlayerShooting>();
+
+        for (int i=0; i<bullets; i++) {  
+            ps.AddAmmunition();
+        }
+    }
+
+    public void AddGrenadesWithMoney()
     {
         if (Coins >= 5)
         {
             FindObjectOfType<Grenade>().AddGrenade();
             Coins -= 5;
+        }
+    }
+
+    public void AddGrenades(int grenades) {
+
+        Grenade g = FindObjectOfType<Grenade>();
+        for(int i=0; i<grenades; i++) {
+            g.AddGrenade();
         }
     }
 }

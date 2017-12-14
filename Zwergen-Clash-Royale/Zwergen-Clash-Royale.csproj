@@ -274,6 +274,7 @@
     <Compile Include="Assets\game\Scripts\Helpers\RandomParticlePoint.cs" />
     <Compile Include="Assets\game\Scripts\Helpers\VolumeHandler.cs" />
     <Compile Include="Assets\game\Scripts\Items\BulletExplosion.cs" />
+    <Compile Include="Assets\game\Scripts\Items\Container.cs" />
     <Compile Include="Assets\game\Scripts\Items\Gun.cs" />
     <Compile Include="Assets\game\Scripts\Items\Holster.cs" />
     <Compile Include="Assets\game\Scripts\Items\Mineable.cs" />
@@ -293,9 +294,9 @@
     <Compile Include="Assets\game\Scripts\Player\Grenade.cs" />
     <Compile Include="Assets\game\Scripts\Player\Inventory.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerHealth.cs" />
+    <Compile Include="Assets\game\Scripts\Player\PlayerInteraction.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerShooting.cs" />
-    <Compile Include="Assets\game\Scripts\Player\PlayerTrading.cs" />
     <Compile Include="Assets\game\Scripts\World\Biome.cs" />
     <Compile Include="Assets\game\Scripts\World\Generator.cs" />
     <Compile Include="Assets\game\Scripts\World\NavMeshGenerator.cs" />

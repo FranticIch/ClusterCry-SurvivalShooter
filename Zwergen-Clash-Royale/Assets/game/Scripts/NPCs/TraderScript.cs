@@ -20,7 +20,6 @@ public class TraderScript : MonoBehaviour {
     {
         anim.SetTrigger("Greeting");
         Debug.Log("Hello there");
-        //transform.rotation = playerrotation*
     }
 
 }
