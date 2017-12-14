@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DayNightManager : MonoBehaviour
 {
+    public bool isNight;
     public bool night;
     public GameObject lightObject;
     public GameObject parentObject;
@@ -33,6 +34,15 @@ public class DayNightManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(light.intensity < 0.4)
+        {
+            isNight = true;
+        }
+        else
+        {
+            isNight = false;
+        }
+
         parentObject.transform.Rotate(Vector3.up * Time.deltaTime, Space.World);
         if (timeForEffect > elapsed)
         {
