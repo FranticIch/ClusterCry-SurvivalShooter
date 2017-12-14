@@ -8330,6 +8330,7 @@ MonoBehaviour:
   reSpawnTime: 30
   enemyPrefab: {fileID: 1521517298462526, guid: b0112fde1ea7bc246a99e6c98e057be5,
     type: 2}
+  NightSpawner: 1
 --- !u!136 &136014634070929790
 CapsuleCollider:
   m_ObjectHideFlags: 1
