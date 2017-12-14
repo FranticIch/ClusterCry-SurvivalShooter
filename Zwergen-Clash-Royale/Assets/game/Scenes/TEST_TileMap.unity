@@ -521,11 +521,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114759836752084450, guid: 8a82f3fc3cb6de04a88732bf9053ea92,
-        type: 2}
-      propertyPath: selectedTimeForEffect
-      value: 90
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a82f3fc3cb6de04a88732bf9053ea92, type: 2}
   m_IsPrefabParent: 0

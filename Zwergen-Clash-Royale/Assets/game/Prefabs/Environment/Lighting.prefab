@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97adc1583c2936d4da293fe25d241459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNight: 0
   night: 0
   lightObject: {fileID: 1460636351738414}
   parentObject: {fileID: 1695727883849952}
