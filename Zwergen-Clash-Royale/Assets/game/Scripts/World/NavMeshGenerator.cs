@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEditor.AI;
+//using UnityEditor.AI;
 
 
 public class NavMeshGenerator : MonoBehaviour {
@@ -14,7 +14,7 @@ public class NavMeshGenerator : MonoBehaviour {
     }
 
 	void Update () {
-		NavMeshEditorHelpers.DrawBuildDebug(m_NavMeshData, NavMeshBuildDebugFlags.Regions | NavMeshBuildDebugFlags.SimplifiedContours);
+		//NavMeshEditorHelpers.DrawBuildDebug(m_NavMeshData, NavMeshBuildDebugFlags.Regions | NavMeshBuildDebugFlags.SimplifiedContours);
 	}
 	
 	void CalculateMesh(int width, Vector3 position){
