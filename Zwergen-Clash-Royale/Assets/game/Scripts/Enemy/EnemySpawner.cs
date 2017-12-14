@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour {
     void Spawn() {
         if (NightSpawner)
         {
-            if (!FindObjectOfType<DayNightManager>().night)
+            if (!FindObjectOfType<DayNightManager>().isNight)
                 return;
         }
 
