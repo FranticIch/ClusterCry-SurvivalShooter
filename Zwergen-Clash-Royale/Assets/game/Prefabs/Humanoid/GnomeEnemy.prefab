@@ -558,7 +558,11 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
+<<<<<<< HEAD
+  randomSeed: 1379756834
+=======
   randomSeed: -1177584953
+>>>>>>> MapProgression
   InitialModule:
     serializedVersion: 3
     enabled: 1
