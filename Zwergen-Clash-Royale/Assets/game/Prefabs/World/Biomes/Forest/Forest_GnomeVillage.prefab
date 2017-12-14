@@ -10022,7 +10022,6 @@ MonoBehaviour:
   reSpawnTime: 10
   enemyPrefab: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c,
     type: 2}
-<<<<<<< HEAD
 --- !u!114 &114518440426448564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10037,8 +10036,6 @@ MonoBehaviour:
   reSpawnTime: 10
   enemyPrefab: {fileID: 1929149136708302, guid: 053aa10f786b06a448c254daf403331c,
     type: 2}
-=======
->>>>>>> MapProgression
 --- !u!114 &114994042306439128
 MonoBehaviour:
   m_ObjectHideFlags: 1

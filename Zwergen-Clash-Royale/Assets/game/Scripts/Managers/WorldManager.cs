@@ -13,35 +13,30 @@ public class WorldManager : MonoBehaviour {
 	
 	private List<GameObject> tiles = new List<GameObject>();
 	
-	private int seed = 0;
+	private int seed;
 	
 	void Start () {
 		navGen = GetComponent<NavMeshGenerator>();
-		ResetMap();
+		GenerateChunk();
 	}
 	
 	void Update () {
 		
 	}
 	
-	public void ResetMap() {
-		DestroyTiles();
+	void GenerateChunk() {
 		//Add Offset
-		Debug.Log("RESET MAP");
-		tiles = generator.GenerateChunkAt(0, 0, seed, transform);
-		
+		for(int z = 0; z < generator.chunkSize; z++) {
+			for(int x = 0; x < generator.chunkSize; x++) {
+				GenerateTileAt(x, z);
+			}
+		}
 		navGen.RecalculateMesh(generator.chunkSize, new Vector3(generator.chunkSize/2, 0, generator.chunkSize/2));
 	}
 	
-	void DestroyTiles() {
-		// foreach(GameObject tile in tiles) {
-			// tiles.Remove(tile);
-			// Destroy(tile);
-		// }
-		while(tiles.Count > 0){
-			GameObject tile = tiles[0];
-			tiles.Remove(tile);
-			Destroy(tile);
-		}
+	void GenerateTileAt(int x, int z) {
+		GameObject tile = (GameObject)Instantiate(generator.GenerateTileAt(x, z, seed), new Vector3(x*15, 0, z*15), Quaternion.identity);
+		tile.transform.parent = transform;
+		tiles.Add(tile);
 	}
 }

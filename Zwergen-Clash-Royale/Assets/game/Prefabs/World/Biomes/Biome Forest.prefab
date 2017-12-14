@@ -52,17 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Forest
-  borderTilePrefab: {fileID: 1032849376305518, guid: 3188d479af57bea448794f95f610efa0,
-    type: 2}
-  borderCornerTilePrefab: {fileID: 1028296014540814, guid: bb949e30faae6f449b28147ded5942df,
-    type: 2}
-  exitTilePrefab: {fileID: 1037183469583126, guid: bb8b419e3f5870f4cbb9804fd615afdc,
-    type: 2}
-  spawnTilePrefab: {fileID: 1348266946248592, guid: 3f0b747ccbb7054479b8783402e699cc,
-    type: 2}
   tilePrefabs:
   - {fileID: 1132264296675088, guid: 4e873af934e851e4cb45e15db76ac63b, type: 2}
-  - {fileID: 1243080304271354, guid: f4a51e358fddcb547be3e8ba3be30f5b, type: 2}
+  - {fileID: 1037183469583126, guid: bb8b419e3f5870f4cbb9804fd615afdc, type: 2}
   - {fileID: 1688300377755312, guid: 85815d68259627c44a7fefe7dda7dd37, type: 2}
   - {fileID: 1030411863184458, guid: 9ce8f3d592e9be541b02a57ab4240268, type: 2}
   - {fileID: 1030411863184458, guid: 9ce8f3d592e9be541b02a57ab4240268, type: 2}
@@ -72,3 +64,4 @@ MonoBehaviour:
   - {fileID: 1219409229102142, guid: 7d15a805b1d420744b69b364c96c7838, type: 2}
   - {fileID: 1603436932636946, guid: c56a801f32cfe7a408719981824aedeb, type: 2}
   - {fileID: 1146670833458632, guid: 5503331a9ab515b44adc5346dabe6523, type: 2}
+  - {fileID: 1243080304271354, guid: f4a51e358fddcb547be3e8ba3be30f5b, type: 2}
