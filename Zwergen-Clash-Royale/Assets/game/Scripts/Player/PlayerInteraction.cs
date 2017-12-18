@@ -73,6 +73,7 @@ public class PlayerInteraction : MonoBehaviour {
             inventory.AddPotions(loot[1]);
             inventory.AddGrenades(loot[2]);
             inventory.AddAmmunition(loot[3]);
+            inventory.AddFood(loot[4]);
 
         } else if (container.name == "HumanTrader") {
 

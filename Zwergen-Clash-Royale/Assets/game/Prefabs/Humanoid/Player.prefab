@@ -32,7 +32,7 @@ GameObject:
   - component: {fileID: 8200002}
   - component: {fileID: 114201780584414978}
   - component: {fileID: 114988465590537962}
-  - component: {fileID: 114819480479791568}
+  - component: {fileID: 114928889805110910}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   timeBetweenGrenades: 5
   throwSpeed: 6
   grenade: {fileID: 54959006548583114, guid: dbd47db1a215b764bab1f4591f7d7d6b, type: 2}
---- !u!114 &114819480479791568
+--- !u!114 &114928889805110910
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1047,9 +1047,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b226af89660c23b4ca315ff515ee3ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: af3fbe06a9fea7249812187609af61fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUntilHungry: 60
 --- !u!114 &114988465590537962
 MonoBehaviour:
   m_ObjectHideFlags: 1

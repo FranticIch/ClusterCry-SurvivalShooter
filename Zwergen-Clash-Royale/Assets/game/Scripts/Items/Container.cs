@@ -9,6 +9,7 @@ public class Container : MonoBehaviour {
     private int _potions;
     private int _grenades;
     private int _ammuntion;
+    private int _food;
 
     private int[] _items;
 
@@ -17,10 +18,11 @@ public class Container : MonoBehaviour {
         _potions = UnityEngine.Random.Range(0, 2);
         _grenades = UnityEngine.Random.Range(0, 1);
         _ammuntion = UnityEngine.Random.Range(0, 5);
+        _food = UnityEngine.Random.Range(0, 3);
     }
 
     private void Start() {
-        _items = new int[4] { _coins, _potions, _grenades, _ammuntion };
+        _items = new int[5] { _coins, _potions, _grenades, _ammuntion, _food };
     }
 
     public int[] Loot() {
