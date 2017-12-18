@@ -1047,10 +1047,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af3fbe06a9fea7249812187609af61fc, type: 3}
+  m_Script: {fileID: 11500000, guid: b226af89660c23b4ca315ff515ee3ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeUntilHungry: 10
 --- !u!114 &114988465590537962
 MonoBehaviour:
   m_ObjectHideFlags: 1

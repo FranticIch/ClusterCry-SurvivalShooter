@@ -9,6 +9,8 @@ public class InventoryUI : MonoBehaviour {
     private Text grenades;
     private Text coins;
     private Text potions;
+    private Text food;
+    public GameObject FoodGUIElement;
     public GameObject MainWeaponGuiElement;
     public GameObject SpecialWeaponGUIElement;
     public GameObject CoinGuiElement;
@@ -21,7 +23,7 @@ public class InventoryUI : MonoBehaviour {
         grenades = SpecialWeaponGUIElement.GetComponentInChildren<Text>();
         ammo = MainWeaponGuiElement.GetComponentInChildren<Text>();
         potions = PotionGuiElement.GetComponentInChildren<Text>();
-        
+        food = FoodGUIElement.GetComponentInChildren<Text>();
 	}
 	
 	// Update is called once per frame
@@ -30,5 +32,6 @@ public class InventoryUI : MonoBehaviour {
         coins.text = "" + Player.GetComponentInChildren<Inventory>().Coins;
         grenades.text = "" + Player.GetComponentInChildren<Grenade>().grenadesInInventory;
         ammo.text = ""+  Player.GetComponentInChildren<PlayerShooting>().BulletsInInventory;
+        food.text = "" + Player.GetComponentInChildren<Inventory>().Food;
 	}
 }
