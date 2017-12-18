@@ -7,7 +7,20 @@ public class Inventory : MonoBehaviour
 {
     private int _coins = 0;
     private int _potions;
+    private int _food;
 
+    public int Food
+    {
+        get
+        {
+            return _food;
+        }
+
+        set
+        {
+            _food = value;
+        }
+    }
     public int Coins
     {
         get
@@ -96,5 +109,15 @@ public class Inventory : MonoBehaviour
         for(int i=0; i<grenades; i++) {
             g.AddGrenade();
         }
+    }
+
+    public void AddFood(int food)
+    {
+        _food += food;
+    }
+
+    public void RemoveFood()
+    {
+        _food--;
     }
 }
