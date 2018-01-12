@@ -300,10 +300,12 @@
     <Compile Include="Assets\game\Scripts\Managers\UIManagers\InventoryUI.cs" />
     <Compile Include="Assets\game\Scripts\Managers\UIManagers\ScoreManager.cs" />
     <Compile Include="Assets\game\Scripts\Managers\UIManagers\SkillUIManager.cs" />
+    <Compile Include="Assets\game\Scripts\Managers\UIManagers\StartingDialog.cs" />
     <Compile Include="Assets\game\Scripts\Managers\WorldManager.cs" />
     <Compile Include="Assets\game\Scripts\NPCs\SimpleNav.cs" />
     <Compile Include="Assets\game\Scripts\NPCs\TraderScript.cs" />
     <Compile Include="Assets\game\Scripts\Player\CloseCombat.cs" />
+    <Compile Include="Assets\game\Scripts\Player\Food.cs" />
     <Compile Include="Assets\game\Scripts\Player\Grenade.cs" />
     <Compile Include="Assets\game\Scripts\Player\Inventory.cs" />
     <Compile Include="Assets\game\Scripts\Player\PlayerHealth.cs" />
