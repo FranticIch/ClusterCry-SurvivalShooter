@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/_CompletedAssets/Scenes/Level 01 5.x.unity
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/game/Scenes/TEST SCENE.unity
-    guid: 874e24e631d7345b0a29cc297bedb405
+    path: Assets/game/Scenes/TEST_TileMap.unity
+    guid: a5cee4edec1ef7042852b59795f199a8

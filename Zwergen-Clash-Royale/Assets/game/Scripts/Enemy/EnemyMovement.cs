@@ -1,49 +1,69 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnitySampleAssets.CrossPlatformInput;
+using System;
 
 namespace CompleteProject
 {
-    public class EnemyMovement : MonoBehaviour
-    {
+    public class EnemyMovement : MonoBehaviour {
+		
         Transform player;               // Reference to the player's position.
+		EnemySpawner spawn;
         PlayerHealth playerHealth;      // Reference to the player's health.
         EnemyHealth enemyHealth;        // Reference to this enemy's health.
-        UnityEngine.AI.NavMeshAgent nav;          // Reference to the nav mesh agent.
-        Animator anim;
+		
+		public int followRadius = 10;
+		
+		private EnemySpawner spawner;
+		
+        private UnityEngine.AI.NavMeshAgent nav;          // Reference to the nav mesh agent.
+        
+		private Animator anim;
+		private Rigidbody body;
+		
+        bool walking = false;
+        public LayerMask spawnPoints;
 
-
-        void Awake ()
-        {
-            // Set up the references.
-            player = GameObject.FindGameObjectWithTag ("Player").transform;
-            playerHealth = player.GetComponent <PlayerHealth> ();
-            enemyHealth = GetComponent <EnemyHealth> ();
-            nav = GetComponent <UnityEngine.AI.NavMeshAgent> ();
+        void Awake() {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+			body = GetComponent<Rigidbody>();
+            playerHealth = player.GetComponent<PlayerHealth>();
+            enemyHealth = GetComponent<EnemyHealth>();
+            nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
             anim = GetComponent<Animator>();
-            
+			
+			nav.enabled = true;
         }
 
-        void FixedUpdate ()
-        {
-            // If the enemy and the player have health left...
-            if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
-            {
-                // ... set the destination of the nav mesh agent to the player.
-                nav.SetDestination (player.position);
-
-
-                
-            }
-            // Otherwise...
-            else
-            {
-                // ... disable the nav mesh agent.
-                nav.enabled = false;
-            }
-
-
+        private void Start() {
         }
 
+        private void Update() {
+			
+        }
+
+        void FixedUpdate() {
+            if (nav.enabled)
+            {
+                if (Vector3.Distance(transform.position, player.position) > followRadius)
+                {
+                    nav.SetDestination(spawner.transform.position);
+                }
+                else
+                {
+                    nav.SetDestination(player.position);
+                }
+            } 
+            UpdateAnimator();
+        }
+
+        void UpdateAnimator() {
+            if(nav.enabled)
+                anim.SetBool("IsWalking", nav.remainingDistance>0.1f);
+		}
+		
+		public void SetSpawner(EnemySpawner spawner){
+			this.spawner = spawner;
+		}
     }
 }

@@ -70,7 +70,7 @@ namespace CompleteProject
             RaycastHit floorHit;
 
             // Perform the raycast and if it hits something on the floor layer...
-            if(Physics.Raycast (camRay, out floorHit, camRayLength, floorMask))
+            if(Physics.Raycast (camRay, out floorHit, camRayLength, floorMask) && !FindObjectOfType<PlayerShooting>().MusketTimer)
             {
                 // Create a vector from the player to the point on the floor the raycast from the mouse hit.
                 Vector3 playerToMouse = floorHit.point - transform.position;

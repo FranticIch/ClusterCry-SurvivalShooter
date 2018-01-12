@@ -23,6 +23,7 @@ namespace CompleteProject
         PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
         bool isDead;                                                // Whether the player is dead.
         bool damaged;                                               // True when the player gets damaged.
+        //Inventory inventory;
 
 
 
@@ -33,6 +34,7 @@ namespace CompleteProject
             playerAudio = GetComponent <AudioSource> ();
             playerMovement = GetComponent <PlayerMovement> ();
             playerShooting = GetComponentInChildren <PlayerShooting> ();
+            //inventory = GetComponent<Inventory>();
 
             // Set the initial health of the player.
             currentHealth = startingHealth;
@@ -56,6 +58,16 @@ namespace CompleteProject
 
             // Reset the damaged flag.
             damaged = false;
+
+            
+            
+            if (Input.GetKeyDown(KeyCode.H) &&  currentHealth<100)
+            {
+                if(FindObjectOfType<Inventory>().TakePotion())
+                    HealPlayer();
+                
+            }
+            
         }
 
 
@@ -82,6 +94,16 @@ namespace CompleteProject
                 // ... it should die.
                 Death ();
             }
+            else
+            {
+                anim.SetTrigger("Damage");
+            }
+        }
+
+        void HealPlayer()
+        {
+            currentHealth = startingHealth;
+            healthSlider.value = currentHealth;
         }
 
 
@@ -111,5 +133,6 @@ namespace CompleteProject
             // Reload the level that is currently loaded.
             SceneManager.LoadScene (0);
         }
+
     }
 }

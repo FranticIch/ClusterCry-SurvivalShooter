@@ -25,20 +25,20 @@ public class BulletExplosion : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Enemy"))
+        if(!other.gameObject.CompareTag("GoTrough") && !other.gameObject.CompareTag("Player"))
         {
             Rigidbody targetRigidbody = other.GetComponent<Rigidbody>();
+
+            if (!targetRigidbody)
+                return;
 
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
 
             EnemyHealth targetHealth = other.GetComponent<EnemyHealth>();
             targetHealth.TakeDamage(damage, transform.position);
-        }
 
-        if (!other.gameObject.CompareTag("CombatDectector") && !other.gameObject.CompareTag("Weapon"))
-        {
             Destroy(gameObject);
         }
-        
+
     }
 }

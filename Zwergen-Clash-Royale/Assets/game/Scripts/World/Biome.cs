@@ -6,7 +6,14 @@ public class Biome : MonoBehaviour {
 	
 	public string name;
 	
-	public GameObject[] tilePrefabs;
+	
+	public GameObject borderTilePrefab;
+	public GameObject borderCornerTilePrefab;
+	
+	public GameObject exitTilePrefab;
+	public GameObject spawnTilePrefab;
+	
+	public GameObject[] tilePrefabs; 
 	
 	// Use this for initialization
 	void Start () {
@@ -21,6 +28,6 @@ public class Biome : MonoBehaviour {
 	}
 	
 	public GameObject GetRandomTile(int seed) {
-		return tilePrefabs[Random.Range(0, tilePrefabs.Length-1)];
+		return tilePrefabs[Random.Range(0, tilePrefabs.Length)];
 	}
 }

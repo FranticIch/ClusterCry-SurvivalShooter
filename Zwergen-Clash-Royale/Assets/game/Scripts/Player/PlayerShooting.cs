@@ -4,85 +4,123 @@ using UnitySampleAssets.CrossPlatformInput;
 
 namespace CompleteProject
 {
-    public class PlayerShooting : MonoBehaviour
-    {
+    public class PlayerShooting : MonoBehaviour {
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
-        public float timeBetweenGrenades = 2f;
-        public float throwSpeed = 5f;
+
 
         public float weaponSlowdown = 1.0f;
 
-        public Rigidbody grenade;
+
         public Rigidbody bullet;
-        public Transform gunBarrelEnd;
-        public Transform throwTransform;                    
+        public GameObject gunBarrelEnd;                  
         public Light faceLight;
         public Transform closeCombatDetector;
 
         float timer;                                    // A timer to determine when to fire.
-        float grenadeTimer = 5f;
+
         float effectsDisplayTime = 0.2f;
         float waitForMovement;
-        bool thrown;
+
+
+        int musketAmmunition = 5;
 
         float countdownTimerMainWeapon;
-        float countdownTimerSpecialWeapon;
 
 
+
+        float waitForMusket;
+        bool startMusketTimer;
+        bool hasToLoad;
+        bool rotationAllowed;
+
+
+        Animator anim;
         PlayerMovement playerMovement;
         ParticleSystem gunParticles;
-        CloseCombat closeCombatScript;
+
+
+        public GameObject Musket;
+        public GameObject MusketBack;
+        public GameObject Player;
+        public GameObject Pickaxe;
 
         AudioSource gunAudio;
-        public AudioSource punchAudio;
+
         
-        void Awake ()
-        {
-            gunParticles = GetComponent<ParticleSystem> ();
-            closeCombatScript = closeCombatDetector.GetComponent<CloseCombat>();
+        void Awake () {
+            rotationAllowed = true;
+            
+
+            Musket.SetActive(false);
+            MusketBack.SetActive(true);
+            Pickaxe.SetActive(true);
+
+            gunParticles = gunBarrelEnd.GetComponent<ParticleSystem> ();
+           
             playerMovement = GetComponentInParent<PlayerMovement>();
 
             gunAudio = GetComponent<AudioSource>();
-            
+
+            anim = GetComponentInParent<Animator>();
+
+           
         }
 
         void Update ()
         {
-
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
-            grenadeTimer += Time.deltaTime;
 
-            if (timer > timeBetweenGrenades)
-            {
-                thrown = false;
-            }
+
+            //grenadeAmmunition = grenadesInInventory;
+            //musketAmmunition = bulletsInInventory;
 
             // If the Fire1 button is being press and it's time to fire...
-            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0 && rotationAllowed && /*bulletsInInventory*/musketAmmunition>0)
             {
+                rotationAllowed = false;
+
+
                 // ... shoot the gun.
                 playerMovement.SlowDownModificator = 0.0f;
+                startMusketTimer = true;
+                hasToLoad = false;
+                waitForMusket = 0.0f;
+                Player.transform.Rotate(new Vector3(0, 45));
+                anim.SetTrigger("Shoot");
+
+            }
+
+            if (startMusketTimer)
+            {
+                waitForMusket += Time.deltaTime;
+            }
+
+            if(waitForMusket >= 0.2f && !hasToLoad)
+            {
+                Musket.SetActive(true);
+                MusketBack.SetActive(false);
+                Pickaxe.SetActive(false);
+            }
+
+            if (waitForMusket >=0.5f && !hasToLoad)
+            {
+                hasToLoad = true;
                 ShootBullet();
                 gunAudio.Play();
+
+
             }
 
-            if (Input.GetButtonDown("Fire2") && grenadeTimer >= timeBetweenGrenades && !thrown)
+            if (waitForMusket >= 1.0f)
             {
-                playerMovement.SlowDownModificator = 0.5f;
-                ThrowGrenade();
-                grenadeTimer = 0;
+                Musket.SetActive(false);
+                MusketBack.SetActive(true);
+                Pickaxe.SetActive(true);
+                startMusketTimer = false;
+                rotationAllowed = true;
+                waitForMusket = 0.0f;
             }
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-
-                playerMovement.SlowDownModificator = 0.75f;
-                closeCombatScript.attack();
-                punchAudio.Play();
-            }
-
-
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
             if (timer >= timeBetweenBullets * effectsDisplayTime)
             {
@@ -100,30 +138,18 @@ namespace CompleteProject
                 waitForMovement = 0.0f;
                 playerMovement.SlowDownModificator = 1.0f;
             }
-        }
 
-        private void FixedUpdate()
-        {
             
+
+
         }
 
 
-        public void DisableEffects ()
-        {
+        public void DisableEffects () {
 			faceLight.enabled = false;
         }
 
-        void ThrowGrenade()
-        {
-            thrown = true;
-            Rigidbody grenadeInstance = Instantiate(grenade, throwTransform.position, throwTransform.rotation) as Rigidbody;
-
-            grenadeInstance.velocity = throwSpeed * throwTransform.forward;
-            
-
-            //AUDIO
         
-        }
 
         void ShootBullet()
         {
@@ -132,9 +158,13 @@ namespace CompleteProject
             gunParticles.Stop();
             gunParticles.Play();
 
-            Rigidbody bulletInstance = Instantiate(bullet, gunBarrelEnd.position, gunBarrelEnd.rotation) as Rigidbody;
+            Rigidbody bulletInstance = Instantiate(bullet, gunBarrelEnd.transform.position, gunBarrelEnd.transform.rotation) as Rigidbody;
 
-            bulletInstance.velocity = 20f * gunBarrelEnd.forward;
+            bulletInstance.velocity = 35f * gunBarrelEnd.transform.forward;
+
+            musketAmmunition--;
+            //invetory.removeItem("bullet");
+            Debug.Log("Kugeln: " + musketAmmunition);
         }
 
         public string MainWeaponTimer
@@ -156,22 +186,30 @@ namespace CompleteProject
             }
         }
 
-        public string SpecialWeaponTimer
+        
+
+        public bool MusketTimer
         {
             get
             {
-               
-                if (grenadeTimer >= 0 && grenadeTimer < timeBetweenGrenades)
-                {
-                    countdownTimerSpecialWeapon -= Time.deltaTime;
-                    return "" + (int)countdownTimerSpecialWeapon;
-                }
-                else
-                {
-                    countdownTimerSpecialWeapon = (int)timeBetweenGrenades;
-                    return "Bereit";
-                }
+                return startMusketTimer;
             }
         }
+
+        public int BulletsInInventory
+        {
+            get
+            {
+                //return invetory.bullets;
+                return musketAmmunition;
+            }
+        }
+
+        public void AddAmmunition()
+        {
+            musketAmmunition++;
+        }
+
+        
     }
 }

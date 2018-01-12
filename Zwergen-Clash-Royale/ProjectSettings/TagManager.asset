@@ -5,8 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - CombatDectector
-  - Weapon
+  - GoTrough
+  - Trader
+  - Container
+  - PlayerSpawn
+  - ExitPoint
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - LightMask
   - Invisible
   - Player
-  - 
+  - Spawnpoint
   - 
   - 
   - 

@@ -5,30 +5,43 @@ using UnityEngine;
 public class WorldManager : MonoBehaviour {
 
 	public Generator generator;
+    public int worldSize;
+	
+	public Transform player;
+	
+	private NavMeshGenerator navGen;
 	
 	private List<GameObject> tiles = new List<GameObject>();
 	
-	private int seed;
+	private int seed = 0;
 	
 	void Start () {
-		GenerateStartingArea(10);
+		navGen = GetComponent<NavMeshGenerator>();
+		ResetMap();
 	}
 	
 	void Update () {
 		
 	}
 	
-	void GenerateStartingArea(int size) {
-		for(int z = 0; z < size; z++) {
-			for(int x = 0; x < size; x++) {
-				GenerateTileAt(x, z);
-			}
-		}
+	public void ResetMap() {
+		DestroyTiles();
+		//Add Offset
+		Debug.Log("RESET MAP");
+		tiles = generator.GenerateChunkAt(0, 0, seed, transform);
+		
+		navGen.RecalculateMesh(generator.chunkSize, new Vector3(generator.chunkSize/2, 0, generator.chunkSize/2));
 	}
 	
-	void GenerateTileAt(int x, int z) {
-		GameObject tile = (GameObject)Instantiate(generator.GenerateTileAt(x, z, seed), new Vector3(x*10, 0, z*10), Quaternion.identity);
-		tile.transform.parent = transform;
-		tiles.Add(tile);
+	void DestroyTiles() {
+		// foreach(GameObject tile in tiles) {
+			// tiles.Remove(tile);
+			// Destroy(tile);
+		// }
+		while(tiles.Count > 0){
+			GameObject tile = tiles[0];
+			tiles.Remove(tile);
+			Destroy(tile);
+		}
 	}
 }
